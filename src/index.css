@@ -1,0 +1,16 @@
+#span{
+    color: rgb(136, 14, 14);
+    font-size: 12px;
+    display: none;
+    
+}
+
+.input:invalid[focus = 'true'] ~ span{
+    display: block;
+}
+.input:invalid[focus = 'true']{
+    border: 1px solid red
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

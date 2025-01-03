@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Register() {
   const [input, setInput] = useState({
@@ -10,9 +11,9 @@ function Register() {
     cpassword: "",
     cartItems: [],
   });
-  const handleFocus = () => {
-    setFocus(true);
-  };
+  // const handleFocus = () => {
+  //   setFocus(true);
+  // };
   const [focus, setFocus] = useState({
     errName: false,
     errEmail: false,
@@ -25,7 +26,8 @@ function Register() {
   const handleData = async (e) => {
     e.preventDefault();
     if (input.password !== input.cpassword) {
-      alert("Passwords do not match");
+      // alert("Passwords do not match");
+      toast.warning('Passwords do not match')
       return;
     }
     try {
@@ -37,11 +39,13 @@ function Register() {
         role:"user",
       });
 
-      alert("user registered successfully");
+      // alert("user registered successfully");
+      toast.success('user registered successfully')
       navigate("/login");
     } catch (error) {
       console.error("Erro registering user:", error);
-      alert("An error occurred while registering. Please try again.");
+      // alert("An error occurred while registering. Please try again.");
+      toast.error("An error occurred while registering. Please try again.")
     }
   };
 
@@ -50,6 +54,7 @@ function Register() {
     const value = e.target.value;
     setInput({ ...input, [name]: value });
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -67,7 +72,7 @@ function Register() {
               onBlur={() => setFocus({ ...focus, errName: true })}
               focus={focus.errName.toString()}
               value={input.username}
-              onChange={handleChange}
+                
             />
             <span id="span" className="text-xs text-gray-200 block mt-1">
               Username should have 3-16 characters

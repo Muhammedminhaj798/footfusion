@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UsersContext } from "./context/UserContext";
+import { toast } from "react-toastify";
 
 function Login() {
   const [input, setInput] = useState({
@@ -22,6 +23,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleData = async (e) => {
+    e.preventDefault();
     const user = datas.find(
       (item) => item.email === input.email && item.password === input.password
     );
@@ -29,17 +31,20 @@ function Login() {
 
     if (user.role === "admin") {
       // localStorage.setItem("loginUser", JSON.stringify(user));
-      alert("welcome admin");
+      // toast.success("welcome admin");
       navigate("/admin-product");
+      toast.success("welcome admin");
       localStorage.setItem("Admin", JSON.stringify(user));
-      // alert('login successfully')
+      
       // navigate("/")
     } else if (user) {
       localStorage.setItem("loginUser", JSON.stringify(user));
-      alert("login successfully");
+      
+      toast.success('login successfully')
       navigate("/");
     } else {
-      alert("invalid");
+      // alert("invalid");
+      toast.error('invalid')
       navigate("/register");
     }
   };

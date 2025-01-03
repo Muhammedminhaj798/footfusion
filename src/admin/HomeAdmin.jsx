@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AdmProduct from "./AdmProduct";
+import { toast } from "react-toastify";
 // import Users from "./Users";
 
 function HomeAdmin() {
@@ -8,7 +9,8 @@ function HomeAdmin() {
   const clickToLogout = () => {
     localStorage.removeItem('loginUser')
     localStorage.removeItem('Admin')
-    navigate('/login')
+    navigate('/')
+    toast.success('Admin page is logout successfully')
    }
    
   return (

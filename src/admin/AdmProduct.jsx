@@ -1,20 +1,38 @@
 import React, { useContext, useState } from "react";
 import { ProductContext } from "../context/Context";
 import { Link } from "react-router-dom";
-import { Trash2 } from 'lucide-react';
+import { Pencil, Trash2 } from "lucide-react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function AdmProduct() {
-  const { data } = useContext(ProductContext);
+  const { data, fetch } = useContext(ProductContext);
   const [selectedCategory, setSelectedCategory] = useState("");
+  // const [product , setProduct] = useState({
+  //   name : '',
+  //   brand : '',
+  //   price : '',
+  //   type : ''
+  // })
 
   // Filtered data based on selected category
   const filteredData = selectedCategory
     ? data.filter((item) => item.type === selectedCategory)
     : data;
 
-  const hello = () => {
-    const deleted = data
+  const deletedProduct = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/product/${id}`
+      );
+      console.log(response.data);
+      fetch();
+      toast.success("product is deleted");
+    } catch (error) {
+      console.error("error is ,", error);
+    }
   };
+
 
   return (
     <div className="w-11/12 max-w-[1000px] pt-20 mx-80 sm:px-8 md:px-16 lg:px-32">
@@ -23,7 +41,7 @@ function AdmProduct() {
         <label htmlFor="category" className="block mb-2 font-medium">
           Category:
         </label>
-        
+
         <select
           id="category"
           value={selectedCategory}
@@ -38,12 +56,13 @@ function AdmProduct() {
           ))}
         </select>
 
-        <Link >
-        <button className="mx-[100px] bg-lime-700 w-24 h-11 rounded-md">Add</button>
+        <Link to="/add_product">
+          <button className="mx-[100px] bg-lime-700 w-24 h-11 rounded-md">
+            Add
+          </button>
         </Link>
-
       </div>
-      
+
       {/* Product List */}
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
@@ -55,7 +74,8 @@ function AdmProduct() {
               <th className="p-2 border">Type</th>
               <th className="p-2 border">Brand</th>
               <th className="p-2 border">Price</th>
-              <th className="p-2 border">Actions</th>
+              <th className="p-2 border">Deleted</th>
+              <th className="p-2 border">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -76,9 +96,19 @@ function AdmProduct() {
                 <td className="p-2 border">{item.brand}</td>
                 <td className="p-2 border">{item.price}</td>
                 <td className="p-2 border">
-                  <button onClick={hello} className="text-red-500">
+                  <button
+                    onClick={() => deletedProduct(item.id)}
+                    className="text-red-500"
+                  >
                     <Trash2 />
                   </button>
+                </td>
+                <td className="p-2 border">
+                  <Link to={'/edit_product'}>
+                    <button >
+                      <Pencil />
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

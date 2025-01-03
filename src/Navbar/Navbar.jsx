@@ -16,6 +16,8 @@ function Navbar() {
 
   const filtered = data.filter((item) => {
     const word = input.toLowerCase().trim();
+    console.log(item);
+    
     return (
       item.name.toLowerCase().includes(word) ||
       item.type.toLowerCase().includes(word) ||

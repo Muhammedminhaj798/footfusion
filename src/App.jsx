@@ -23,6 +23,11 @@ import HomeAdmin from "./admin/HomeAdmin";
 import AdmProduct from "./admin/AdmProduct";
 import Users from "./admin/Users";
 import UserDetails from "./admin/UserDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AddProduct from "./admin/AddProduct";
+import EditProduct from "./admin/EditProduct";
+
 
 function App() {
   const admin = localStorage.getItem("Admin");
@@ -31,7 +36,7 @@ function App() {
       <AuthProvider>
         <CartProvider>
           {!admin ? (
-            <> 
+            <>
               <Navbar />
               <Routes>
                 <Route path="/register" element={<Register />} />
@@ -72,24 +77,26 @@ function App() {
             </>
           ) : (
             <>
-            <HomeAdmin/>
+              <HomeAdmin />
               <Routes>
                 <Route path="/admin_home" element={<HomeAdmin />} />
                 <Route path="/admin-product" element={<AdmProduct />} />
                 <Route path="/admin_users" element={<Users />} />
+                <Route path="/add_product" element={<AddProduct/>}/>
+                <Route path="/edit_product" element={<EditProduct/>}/>
                 {/* <Route path="/user_details" element={<UserDetails />} /> */}
-                
+
                 <Route
-                 path="/admin_users/user_details/:id"
-                 element={<UserDetails/>}/>
-                 <Route path="*" element={<h1>not found</h1>} />
+                  path="/admin_users/user_details/:id"
+                  element={<UserDetails />}
+                />
+                <Route path="*" element={<h1>not found</h1>} />
               </Routes>
             </>
           )}
-
-          
         </CartProvider>
       </AuthProvider>
+      <ToastContainer/>
     </UsersProvider>
   );
 }

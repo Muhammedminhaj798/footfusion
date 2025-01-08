@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ProductContext } from "../context/Context";
 
 function EditProduct() {
+
+  const {id} = useParams();
     const {fetch} = useContext(ProductContext)
     const [input, setInput] = useState({
         name : "",
@@ -21,7 +23,9 @@ function EditProduct() {
         const value = e.target.value
         setInput({...input, [name] : value})
     }
-    const handleData = async (id) => {
+    const handleData = async (e) => {
+        e.preventDefault()
+        console.log(id)
         try{
            const response = await axios.patch(`http://localhost:3000/product/${id}`,{
                 name:input.name,
@@ -30,6 +34,9 @@ function EditProduct() {
                 type:input.type
             })
             console.log(response.data);
+            navigate('/')
+            
+
             
             fetch()
             toast.success('Your edit is successfully');
@@ -63,10 +70,10 @@ function EditProduct() {
         </select>
         <br />
         <br />
-        <input className="border border-black w-96" onChange={handleChange} type="text" placeholder="edit brand" />
+        <input className="border border-black w-96" onChange={handleChange} type="text" name="brand" placeholder="edit brand" />
         <br />
         <br />
-        <input className="border border-black w-96" type="text" onChange={handleChange} placeholder="edit price" />
+        <input className="border border-black w-96" type="text" onChange={handleChange} name="price" placeholder="edit price" />
         <br />
         <br />
         <button type="submit" onChange={handleChange} className="p-2 bg-blue-500  text-white rounded hover:bg-blue-600 transition-all w-full">Done</button>

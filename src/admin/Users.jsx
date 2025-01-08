@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Users() {
   const { datas } = useContext(UsersContext);
   
-
+ const users = datas.filter((item) => item.role !== "admin")
   return (
     <div className="w-[1700px] pt-20 text-center px-[450px]">
       <h1 className="text-5xl">
@@ -25,7 +25,7 @@ function Users() {
           </tr>
         </thead>
         <tbody>
-          {datas.map((item, index) => (
+          {users.map((item, index) => (
             <tr className="border h-12" key={item.id || index}>
               <td className="text-xl p-2 border">{index + 1}</td>
               <Link key={item.id} to={`user_details/${item.id}`}>

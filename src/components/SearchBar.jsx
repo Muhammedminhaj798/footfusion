@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function SearchBar({ filtered }) {
   return (
     <div>
-      <div className="grid grid-cols-1  gap-6 p-6">
+      <div className="grid grid-cols-1 w-52  gap-6 p-6">
         {filtered.map((item) => (
           <div
             key={item.id}

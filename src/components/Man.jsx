@@ -55,7 +55,7 @@ function Man() {
               </span>
               <button
                 onClick={() => handleAddToCart(item)}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                className="bg-green-900 text-white px-4 py-2 rounded hover:bg-black transition"
               >
                 Add to Cart
               </button>

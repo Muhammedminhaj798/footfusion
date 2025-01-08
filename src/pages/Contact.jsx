@@ -3,7 +3,7 @@ import React from 'react'
 function Contact() {
   return (
       
-<div className="flex items-center justify-center p-12">
+<div className="flex items-center justify-center p-28">
   <div className="mx-auto w-full max-w-[550px]">
     <form action="https://formbold.com/s/FORM_ID" method="POST">
       <div className="mb-5">

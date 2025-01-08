@@ -1,23 +1,18 @@
-import React, { createContext, useEffect, useState } from "react";  
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const UsersContext = createContext();
 function UserContext({ children }) {
+  const [datas, setDatas] = useState([]);
 
-const [datas,setDatas]=useState([])
-
-
-
-  useEffect(()=>{
-    const featch = async()=>{
-      const response =await axios.get('http://localhost:3000/user')
-      setDatas(response.data)
-    }
-    featch()
-  },[])
+  useEffect(() => {
+    const featch = async () => {
+      const response = await axios.get("http://localhost:3000/user");
+      setDatas(response.data);
+    };
+    featch();
+  }, []);
   // console.log("datas",datas);
-
-
 
   // console.log("datas",datas);
   return (
@@ -29,4 +24,4 @@ const [datas,setDatas]=useState([])
   );
 }
 
-export default UserContext
+export default UserContext;

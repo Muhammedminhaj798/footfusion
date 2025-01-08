@@ -2,13 +2,13 @@
   "product": [
     {
       "id": "11",
-      "name": "Choco City Run",
-      "type": "women",
+      "name": "shahid",
+      "type": "men",
       "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-013-600x600.jpg",
-      "price": 549,
+      "price": "1200",
       "qty": 1,
       "description": "Chocolate-colored running shoes for women.",
-      "brand": "Recycled Shoes",
+      "brand": "kerala",
       "rating": 4.4,
       "reviews": 8
     },
@@ -621,333 +621,147 @@
       "brand": "Recycled Shoes",
       "rating": 4.4,
       "reviews": 9
+    },
+    {
+      "id": "85f6",
+      "name": "rinshad",
+      "brand": "gay",
+      "price": "100",
+      "type": "women",
+      "image": "https://i.pinimg.com/736x/f6/b4/f9/f6b4f93cc879b5445568769fd88027ab.jpg"
     }
   ],
   "user": [
-    {
-      "id": "3977",
-      "username": "minhaj",
-      "email": "minhaj@gmail.com",
-      "password": "minhaj",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Men’s Black Running",
-          "type": "men",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-005-400x400.jpg",
-          "price": "996",
-          "qty": 37,
-          "description": "Comfortable and durable black running shoes for men.",
-          "brand": "Recycled Shoes",
-          "rating": 4.5,
-          "reviews": 12
-        },
-        {
-          "id": "6",
-          "name": "Men’s Moonstone Sneaker",
-          "type": "men",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-018-600x600.jpg",
-          "price": 749,
-          "qty": 4,
-          "description": "Moonstone sneakers with a modern design.",
-          "brand": "Recycled Shoes",
-          "rating": 4.5,
-          "reviews": 11
-        },
-        {
-          "id": "2",
-          "name": "Men’s Classic Blue",
-          "type": "men",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-019-600x600.jpg",
-          "price": "1600",
-          "qty": 8,
-          "description": "Classic blue sneakers perfect for everyday wear.",
-          "brand": "Recycled Shoes",
-          "rating": 4.7,
-          "reviews": 8
-        }
-      ]
-    },
-    {
-      "id": "0761",
-      "username": "bazil",
-      "email": "bazil@gmail.com",
-      "password": "Bazil "
-    },
-    {
-      "id": "d8b9",
-      "username": "minhaj",
-      "email": "minhaj123@gmail.com",
-      "password": "minhaj"
-    },
-    {
-      "id": "6fba",
-      "username": "minhaj.e",
-      "email": "muhammedminhaj@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "8333",
-      "username": "muhammed minhaj",
-      "email": "minhaj123@gmail.com",
-      "password": "121212",
-      "cart": []
-    },
     {
       "id": "eeac",
       "username": "minzafathima",
       "email": "minza@gmail.com",
       "password": "000000",
-      "role": "admin"
+      "role": "admin",
+      "block": false
     },
     {
-      "id": "a32f",
-      "username": "shahid",
-      "email": "shahid123@gmail.com",
-      "password": "shahid"
+      "id": "47d2",
+      "username": "abhijith",
+      "email": "abhi121@gmail.com",
+      "password": "555555",
+      "cpassword": "555555",
+      "role": "user",
+      "block": false
     },
     {
-      "id": "8320",
-      "username": "shahid",
-      "email": "shahid123@gmail.com",
-      "password": "121212"
-    },
-    {
-      "id": "0084",
-      "username": "nihal",
-      "email": "nihal123@gmail.com",
-      "password": "111111"
-    },
-    {
-      "id": "f02d",
-      "username": "shahid",
-      "email": "shahid123@gmail.com",
-      "password": "111111",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Men’s Black Running",
-          "type": "men",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-005-400x400.jpg",
-          "price": "996",
-          "qty": 1,
-          "description": "Comfortable and durable black running shoes for men.",
-          "brand": "Recycled Shoes",
-          "rating": 4.5,
-          "reviews": 12
-        }
-      ]
-    },
-    {
-      "id": "2bcb",
-      "username": "nihal",
-      "email": "nihal123@gmail.com",
-      "password": "111111"
-    },
-    {
-      "id": "dc13",
-      "username": "nihal",
-      "email": "nihal123@gmail.com",
-      "password": "000000"
-    },
-    {
-      "id": "cf2e",
-      "username": "sinan",
-      "email": "sinan123@gmail.com",
-      "password": "222222"
-    },
-    {
-      "id": "33d7",
-      "username": "aginas",
-      "email": "aginas@gmail.com",
-      "password": "999999",
+      "id": "5cf8",
+      "username": "amir",
+      "email": "amir121@gmail.com",
+      "password": "090909",
+      "cpassword": "090909",
+      "role": "user",
+      "block": false,
       "cart": []
     },
     {
-      "id": "4a05",
-      "username": "aare",
-      "email": "arf@sgf.dfg",
-      "password": "000000",
-      "cpassword": "000000"
-    },
+      "id": "3f05",
+      "username": "shaheer",
+      "email": "shaheer121@gmail.com",
+      "password": "123123",
+      "cpassword": "123123",
+      "role": "user",
+      "block": false
+    }
+  ],
+  "orders": [
     {
-      "id": "4083",
-      "username": "danish",
-      "email": "danish123@gmail.com",
-      "password": "555555",
-      "cpassword": "555555",
-      "cart": [
+      "orderId": "ord001",
+      "userId": "47d2",
+      "username": "abhijith",
+      "address": "malappuram,manjeri(po)564342",
+      "products": [
         {
-          "id": "10",
-          "name": "Women’s Candy City Run",
-          "type": "women",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014-600x600.jpg",
-          "price": 549,
+          "productId": "12",
+          "productName": "Cream Suede",
           "qty": 1,
-          "description": "Colorful running shoes perfect for urban environments.",
-          "brand": "Recycled Shoes",
-          "rating": 4.3,
-          "reviews": 12
+          "price": 949
         },
         {
-          "id": "11",
-          "name": "Women’s Choco City Run",
-          "type": "women",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-013-600x600.jpg",
-          "price": 549,
+          "productId": "15",
+          "productName": "Orange Sneaker",
           "qty": 1,
-          "description": "Chocolate-colored running shoes for women.",
-          "brand": "Recycled Shoes",
-          "rating": 4.4,
-          "reviews": 8
+          "price": 899
+        }
+      ],
+      "totalPrice": 1848,
+      "status": "Delivered",
+      "date": "2025-01-05"
+    },
+    {
+      "orderId": "ord002",
+      "userId": "5cf8",
+      "username": "amir",
+      "products": [
+        {
+          "productId": "810d",
+          "productName": "Nike Air Force 1 '07",
+          "qty": 1,
+          "price": 9695
+        }
+      ],
+      "totalPrice": 9695,
+      "status": "Shipped",
+      "date": "2025-01-06"
+    },
+    {
+      "orderId": "ord003",
+      "userId": "3f05",
+      "username": "shaheer",
+      "products": [
+        {
+          "productId": "13",
+          "productName": "Green Training",
+          "qty": 2,
+          "price": 449
+        }
+      ],
+      "totalPrice": 898,
+      "status": "Processing",
+      "date": "2025-01-07"
+    },
+    {
+      "orderId": "ord004",
+      "userId": "47d2",
+      "username": "abhijith",
+      "products": [
+        {
+          "productId": "c36b",
+          "productName": "Nike Go FlyEase",
+          "qty": 1,
+          "price": 11000
+        }
+      ],
+      "totalPrice": 11000,
+      "status": "Delivered",
+      "date": "2025-01-04"
+    },
+    {
+      "orderId": "ord005",
+      "userId": "5cf8",
+      "username": "amir",
+      "products": [
+        {
+          "productId": "9bc3",
+          "productName": "Black Flame",
+          "qty": 1,
+          "price": 4000
         },
         {
-          "id": "12",
-          "name": "Women’s Cream Suede",
-          "type": "women",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-015-600x600.jpg",
-          "price": 949,
+          "productId": "20",
+          "productName": "Yellow Training",
           "qty": 1,
-          "description": "Elegant cream suede sneakers.",
-          "brand": "Recycled Shoes",
-          "rating": 4.6,
-          "reviews": 9
+          "price": 499
         }
-      ]
-    },
-    {
-      "id": "56d5",
-      "username": "danish",
-      "email": "danish123@gmail.com",
-      "password": "555555",
-      "cpassword": "555555"
-    },
-    {
-      "id": "5329",
-      "username": "adhil",
-      "email": "adhil123@gmail.com",
-      "password": "444444",
-      "cpassword": "444444"
-    },
-    {
-      "id": "8bcf",
-      "username": "rinshad",
-      "email": "rinshad123@gmail.com",
-      "password": "222222",
-      "cpassword": "222222",
-      "cart": [
-        {
-          "id": "2",
-          "name": "Men’s Classic Blue",
-          "type": "men",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-019-600x600.jpg",
-          "price": "1600",
-          "qty": 2,
-          "description": "Classic blue sneakers perfect for everyday wear.",
-          "brand": "Recycled Shoes",
-          "rating": 4.7,
-          "reviews": 8
-        }
-      ]
-    },
-    {
-      "id": "3ab9",
-      "username": "rinshad",
-      "email": "rinshad123@gmail.com",
-      "password": "222222",
-      "cpassword": "222222"
-    },
-    {
-      "id": "a85a",
-      "username": "shahid",
-      "email": "shahid123@gmail.com",
-      "password": "111111",
-      "cpassword": "111111"
-    },
-    {
-      "id": "6948",
-      "username": "minhaj",
-      "email": "minhaj123@gmail.com",
-      "password": "123456",
-      "cpassword": "123456"
-    },
-    {
-      "id": "c10d",
-      "username": "minhaj",
-      "email": "minhaj123@gmail.com",
-      "password": "123456",
-      "cpassword": "123456"
-    },
-    {
-      "id": "474b",
-      "username": "minhaj",
-      "email": "minhaj123@gmail.com",
-      "password": "000000",
-      "cpassword": "000000"
-    },
-    {
-      "id": "86f7",
-      "username": "minhaj",
-      "email": "minza@gmail.com",
-      "password": "121212",
-      "cpassword": "121212",
-      "cart": [
-        {
-          "id": "1009",
-          "name": "Black Running",
-          "type": "kid",
-          "image": "https://i.pinimg.com/736x/e4/80/72/e48072ae236828a63a644de0af8f4e41.jpg",
-          "price": 799,
-          "qty": 1,
-          "description": "Comfortable and durable black running shoes for men.",
-          "brand": "Recycled Shoes",
-          "rating": 4.5,
-          "reviews": 12
-        }
-      ]
-    },
-    {
-      "id": "89c7",
-      "username": "minzafathima",
-      "email": "minza@gmail.com",
-      "password": "121212",
-      "cpassword": "121212"
-    },
-    {
-      "id": "331c",
-      "username": "muhammedminhaj",
-      "email": "muhammedminhaj798@gmail.com",
-      "password": "MinhaJ",
-      "cpassword": "MinhaJ",
-      "cart": [
-        {
-          "id": "10",
-          "name": "Candy City Run",
-          "type": "women",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-014-600x600.jpg",
-          "price": 549,
-          "qty": 2,
-          "description": "Colorful running shoes perfect for urban environments.",
-          "brand": "Recycled Shoes",
-          "rating": 4.3,
-          "reviews": 12
-        }
-      ]
-    },
-    {
-      "id": "fc10",
-      "username": "minhaj",
-      "email": "muhammedminhaj798@gmail.com",
-      "password": "MinhaJ",
-      "cpassword": "MinhaJ"
-    },
-    {
-      "id": "0f4a",
-      "username": "nahaf",
-      "email": "minza@gmail.com",
-      "password": "999999",
-      "cpassword": "999999",
-      "role": "user"
+      ],
+      "totalPrice": 4499,
+      "status": "Cancelled",
+      "date": "2025-01-03"
     }
   ]
 }

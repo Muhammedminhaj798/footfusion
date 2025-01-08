@@ -1,36 +1,112 @@
-import React, { useState, useContext, useEffect } from "react";
+import  { useState, useContext, useEffect } from "react";
 import { UsersContext } from "../context/UserContext";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function UserDetails() {
   const { datas } = useContext(UsersContext);
-  const [state, setState] = useState([]);
   const { id } = useParams();
+  const [stated, setState] = useState(null);
+
   useEffect(() => {
-    const filter = datas.filter((filt) => filt.id === id);
+    const filter = datas.find((filt) => filt.id === id);
     setState(filter);
+    console.log("syfhg", filter);
   }, [datas, id]);
-  console.log("datas : ", state);
+
+  useEffect(() => {
+    const filter = datas.find((filt) => filt.id === id);
+    console.log("harashmentn : ", filter);
+
+  }, [datas, id]);
+
+  const blockUser = async(e) => {
+    e.preventDefault();
+    if(stated?.block === false){
+      try{
+        const response = await axios.patch(`http://localhost:3000/user/${id}`,{
+          block : true
+        });
+        
+        setState(response.data)
+     
+
+      }catch(error){
+        console.log(error);
+
+      }
+    }
+    else if(stated?.block === true){
+      try{
+        const response = await axios.patch(`http://localhost:3000/user/${id}`,{
+          block : false
+        });
+        setState(response.data)
+
+      }catch(error){
+        console.log(error);
+
+      }
+    }
+
+  }
+
+  // const blockUser = async () => {
+  //   try {
+  //     if (stated?.block == false) {
+  //       const response = await axios.patch(`http://localhost:3000/user/${id}`, {
+  //         block: true,
+  //       });
+
+  //       console.log(response.data);
+        
+  //     } else {
+  //       const response = await axios.patch(`http://localhost:3000/user/${id}`, {
+  //         block: false,
+  //       });
+  //       console.log(response.data);
+        
+  //     }
+      
+  //   } catch (error) {
+  //     console.error(error);
+      
+  //   }
+
+  // };
+
+  console.log(stated)
 
   return (
-    <div className="px-96 pt-20">
-      {state.map((item) => (
-        <div key={item.id}>
-          <div className="flex bg-yellow-500 mx-24 w-">
-            <img
-              className="w-32 mx-14"
-              src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
-              alt="Profile"
-            />
-            
-            
-            <div>
-            <h1 className="text-xl mt-7"><label className="font-bold">Name : </label>{item.username}</h1>
-            <h1><label className="font-bold">E-mail : </label>{item.email}</h1>
+    
+    <div className="pl-[300px] pt-20">
+      <div key={stated?.id}>
+        <div className="flex bg-yellow-500 mx-24 w-[450px]">
+          <img
+            className="w-32 mx-14"
+            src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
+            alt="Profile"
+          />
+
+          <div>
+            <h1 className="text-xl mt-7">
+              <label className="font-bold">Name : </label>
+              {stated?.username}
+            </h1>
+            <h1>
+              <label className="font-bold">E-mail : </label>
+              {stated?.email}
+            </h1>
+            <br />
+
+            <div className="pb-3">
+              <button className="bg-red-500 w-20 " onClick={blockUser}>
+                {stated?.block  ? "unblock" : "block"}
+              </button>
             </div>
-            </div>
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 }

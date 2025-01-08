@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
 import Register from "./Register";
@@ -27,7 +27,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
-
+import SearchBar from "./components/SearchBar";
+import Orders from "./admin/Orders";
 
 function App() {
   const admin = localStorage.getItem("Admin");
@@ -50,6 +51,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/payment_details" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/search_bar" element={<SearchBar />} />
 
                 <Route
                   path="/man/productdetails/:id"
@@ -67,8 +69,10 @@ function App() {
                   path="/collections/productdetails/:id"
                   element={<ProdectDetails />}
                 />
+                
+
                 <Route
-                  path="/admin_home/productdetails/:id"
+                  path="/search_bar/productdetails/:id"
                   element={<ProdectDetails />}
                 />
                 <Route path="*" element={<h1>not found</h1>} />
@@ -82,10 +86,14 @@ function App() {
                 <Route path="/admin_home" element={<HomeAdmin />} />
                 <Route path="/admin-product" element={<AdmProduct />} />
                 <Route path="/admin_users" element={<Users />} />
-                <Route path="/add_product" element={<AddProduct/>}/>
-                <Route path="/edit_product" element={<EditProduct/>}/>
+                <Route path="/add_product" element={<AddProduct />} />
+                <Route path="/edit_product/:id" element={<EditProduct />} />
+                <Route path="/orders" element={<Orders/>}/>
                 {/* <Route path="/user_details" element={<UserDetails />} /> */}
-
+                <Route
+                  path="/admin_home/productdetails/:id"
+                  element={<ProdectDetails />}
+                />
                 <Route
                   path="/admin_users/user_details/:id"
                   element={<UserDetails />}
@@ -96,7 +104,7 @@ function App() {
           )}
         </CartProvider>
       </AuthProvider>
-      <ToastContainer/>
+      <ToastContainer />
     </UsersProvider>
   );
 }

@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import { UsersContext } from "./context/UserContext";
 import { toast } from "react-toastify";
 
@@ -10,44 +10,58 @@ function Login() {
     password: "",
   });
   const { datas } = useContext(UsersContext);
+  // console.log("ofgaf", datas);
+  
 
-  const handleFocus = () => {
-    setFocus(true);
-  };
-  const [focus, setFocus] = useState({
-    errName: false,
-    errEmail: false,
-    errPassword: false,
-  });
+
+  // const [ setFocus] = useState({
+  //   errName: false,
+  //   errEmail: false,
+  //   errPassword: false,
+  // });
 
   const navigate = useNavigate();
 
   const handleData = async (e) => {
     e.preventDefault();
+    console.log("Datas:", datas);
+  
     const user = datas.find(
-      (item) => item.email === input.email && item.password === input.password
+      (item) =>
+        item.email === input.email &&
+        item.password === input.password &&
+        item.block === false
     );
-    console.log(user);
-
+    console.log("User found:", user);
+  
+    if (!user) {
+      toast.error("Invalid email or password, or account is blocked.");
+      navigate('/register')
+      return;
+    }
+  
+    // if (user.block === true) {
+    //   toast.error("Your account is temporarily blocked.");
+    //   navigate("/register");
+    //   return;
+    // }
+  
     if (user.role === "admin") {
-      // localStorage.setItem("loginUser", JSON.stringify(user));
-      // toast.success("welcome admin");
-      navigate("/admin-product");
-      toast.success("welcome admin");
+      
+      toast.success("Welcome admin",{
+        onClose:()=>{
+          navigate("/admin-product");
+          window.location.reload()
+        }
+      });
       localStorage.setItem("Admin", JSON.stringify(user));
-      
-      // navigate("/")
-    } else if (user) {
+    } else if (user.role === "user") {
       localStorage.setItem("loginUser", JSON.stringify(user));
-      
-      toast.success('login successfully')
+      toast.success("Login successful");
       navigate("/");
-    } else {
-      // alert("invalid");
-      toast.error('invalid')
-      navigate("/register");
     }
   };
+  
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -57,7 +71,8 @@ function Login() {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-yellow-700 p-14 rounded-lg shadow-lg">
+      <div className= " flex flex-col gap-6 bg-white p-14 rounded-lg shadow-lg">
+        <h1 className="text-center text-xl font-bold capitalize">login</h1>
         <form onSubmit={handleData} className="flex flex-col gap-4">
           <input
             type="email"
@@ -66,9 +81,9 @@ function Login() {
             placeholder="E-mail"
             required
             name="email"
-            className="p-2 rounded border border-gray-300"
+            className="p-2 rounded border border-gray-300 outline-none"
           />
-          <br />
+          
           <input
             type="password"
             onChange={handleChange}
@@ -76,16 +91,16 @@ function Login() {
             placeholder="Enter Your Password"
             required
             name="password"
-            className="p-2 rounded border border-gray-300"
+            className="p-2 rounded border border-gray-300 outline-none"
           />
-          <br />
+          
           <button
             type="submit"
-            className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="p-2 bg-green-900 text-white rounded hover:bg-black"
           >
             Login
           </button>
-          <Link to={"/register"}>Create a new Account</Link>
+          <Link to={"/register"} className="text-sm">Create a new Account ?</Link>
         </form>
       </div>
     </div>

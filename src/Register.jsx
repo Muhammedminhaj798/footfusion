@@ -10,6 +10,7 @@ function Register() {
     password: "",
     cpassword: "",
     cartItems: [],
+    block : false,
   });
   // const handleFocus = () => {
   //   setFocus(true);
@@ -37,6 +38,7 @@ function Register() {
         password: input.password,
         cpassword: input.cpassword,
         role:"user",
+        block:false
       });
 
       // alert("user registered successfully");
@@ -58,7 +60,8 @@ function Register() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="bg-yellow-700 p-6 md:p-10 lg:p-14 rounded-lg shadow-lg w-full max-w-md md:max-w-lg">
+      <div className="bg-white p-6 md:p-10 lg:p-14 rounded-lg shadow-lg w-full max-w-md md:max-w-lg flex flex-col gap-6">
+      <h1 className="text-center text-xl font-bold capitalize">register</h1>
         <form onSubmit={handleData} className="flex flex-col gap-4">
           <div>
             <input
@@ -70,7 +73,7 @@ function Register() {
               name="username"
               required
               onBlur={() => setFocus({ ...focus, errName: true })}
-              focus={focus.errName.toString()}
+              onChange={handleChange}
               value={input.username}
                 
             />
@@ -86,7 +89,6 @@ function Register() {
               placeholder="E-mail"
               required
               onBlur={() => setFocus({ ...focus, errEmail: true })}
-              focus={focus.errEmail.toString()}
               className="input p-2 rounded border border-gray-300 w-full"
               name="email"
               value={input.email}
@@ -105,7 +107,6 @@ function Register() {
               placeholder="Enter Your Password"
               required
               onBlur={() => setFocus({ ...focus, errPassword: true })}
-              focus={focus.errPassword.toString()}
               className="input p-2 rounded border border-gray-300 w-full"
               name="password"
               value={input.password}
@@ -123,7 +124,6 @@ function Register() {
               placeholder="Confirm Your Password"
               required
               onBlur={() => setFocus({ ...focus, errCpassword: true })}
-              focus={focus.errCpassword.toString()}
               pattern={input.password}
               className="input p-2 rounded border border-gray-300 w-full"
               name="cpassword"
@@ -137,11 +137,11 @@ function Register() {
 
           <button
             type="submit"
-            className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-all w-full"
+            className="p-2 bg-green-900 text-white rounded hover:bg-black transition-all w-full"
           >
             Register
           </button>
-          <Link to={'/login'}>I have a Account</Link>
+          <Link to={'/login'} className="text-sm text-center">I have an a Account</Link>
         </form>
       </div>
     </div>

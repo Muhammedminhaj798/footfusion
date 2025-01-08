@@ -69,8 +69,6 @@ function App() {
                   path="/collections/productdetails/:id"
                   element={<ProdectDetails />}
                 />
-                
-
                 <Route
                   path="/search_bar/productdetails/:id"
                   element={<ProdectDetails />}

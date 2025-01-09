@@ -57,6 +57,9 @@ function App() {
                   path="/man/productdetails/:id"
                   element={<ProdectDetails />}
                 />
+                <Route path="/productdetails/:id"
+                  element={<ProdectDetails />}
+                  />
                 <Route
                   path="/kids/productdetails/:id"
                   element={<ProdectDetails />}

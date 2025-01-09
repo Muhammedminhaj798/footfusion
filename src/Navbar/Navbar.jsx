@@ -15,6 +15,7 @@ function Navbar() {
   };
 
   const filtered = data.filter((item) => {
+    console.log(item.id)
     const word = input.toLowerCase().trim();
     return (
       item.name.toLowerCase().includes(word) ||
@@ -61,13 +62,14 @@ function Navbar() {
             {input && (
               <ul className="absolute left-0 w-full bg-white shadow-lg rounded-md max-h-48 overflow-auto z-50">
                 {filtered.map((item, index) => (
+                  <Link to={`productdetails/${item.id}`}>
                   <li
                     key={index}
-                    onClick={() => navigate(`productdetails/${item.id}`)}
                     className="p-2 border-b cursor-pointer hover:bg-gray-100"
                   >
                     {item.name}
                   </li>
+                  </Link>
                 ))}
                 {filtered.length === 0 && (
                   <li className="p-2 text-gray-500">No results found</li>

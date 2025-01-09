@@ -1,82 +1,106 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ProductContext } from "../context/Context";
 
 function EditProduct() {
+  const { id } = useParams();
+  const { fetch } = useContext(ProductContext);
+  const [input, setInput] = useState({
+    name: "",
+    brand: "",
+    price: "",
+    type: "",
+  });
+  const navigate = useNavigate();
 
-  const {id} = useParams();
-    const {fetch} = useContext(ProductContext)
-    const [input, setInput] = useState({
-        name : "",
-        brand : "",
-        price : "",
-        type : ""
-    })
-    const navigate = useNavigate()
-    console.log('stehgsg' , input);
-    
-    const handleChange =(e) => {
-        e.preventDefault();
-        const name = e.target.name
-        const value = e.target.value
-        setInput({...input, [name] : value})
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/product/${id}`);
+        setInput(response.data); 
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        toast.error("Failed to fetch product details");
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInput({ ...input, [name]: value });
+  };
+
+  const handleData = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.patch(`http://localhost:3000/product/${id}`, input);
+      toast.success("Product updated successfully");
+      fetch(); 
+      navigate("/admin-product"); 
+    } catch (error) {
+      console.error("Error updating product:", error);
+      toast.error("Failed to update product");
     }
-    const handleData = async (e) => {
-        e.preventDefault()
-        console.log(id)
-        try{
-           const response = await axios.patch(`http://localhost:3000/product/${id}`,{
-                name:input.name,
-                brand:input.brand,
-                price:input.price,
-                type:input.type
-            })
-            console.log(response.data);
-            navigate('/')
-            
-
-            
-            fetch()
-            toast.success('Your edit is successfully');
-            navigate('/admin-product')
-        }catch(error){
-            console.error('error is : ' , error);
-            
-        }
-    }
-
-
+  };
 
   return (
     <div className="mx-[500px] pt-32">
-      <form action="" onSubmit={handleData}>
+      <form onSubmit={handleData}>
         <input
           className="border border-black px-1 w-96"
           type="text"
           name="name"
-          placeholder="edit name"
+          placeholder="Edit name"
+          value={input.name}
           onChange={handleChange}
           required
         />
         <br />
         <br />
-        <select className="border border-black w-96"  onChange={handleChange} name="type">
-          <option value="">Edit gender type</option>
+        <select
+          className="border border-black w-96"
+          value={input.type}
+          onChange={handleChange}
+          name="type"
+        >
+          <option value="">Edit type</option>
           <option value="men">Men</option>
           <option value="women">Women</option>
           <option value="kid">Kid</option>
         </select>
         <br />
         <br />
-        <input className="border border-black w-96" onChange={handleChange} type="text" name="brand" placeholder="edit brand" />
+        <input
+          className="border border-black w-96"
+          type="text"
+          name="brand"
+          placeholder="Edit brand"
+          value={input.brand}
+          onChange={handleChange}
+          required
+        />
         <br />
         <br />
-        <input className="border border-black w-96" type="text" onChange={handleChange} name="price" placeholder="edit price" />
+        <input
+          className="border border-black w-96"
+          type="text"
+          name="price"
+          placeholder="Edit price"
+          value={input.price}
+          onChange={handleChange}
+          required
+        />
         <br />
         <br />
-        <button type="submit" onChange={handleChange} className="p-2 bg-blue-500  text-white rounded hover:bg-blue-600 transition-all w-full">Done</button>
+        <button
+          type="submit"
+          className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-all w-full"
+        >
+          Save Changes
+        </button>
       </form>
     </div>
   );

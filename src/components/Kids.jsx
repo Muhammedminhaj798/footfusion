@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../context/Context";
 import { AuthContext } from "../context/AuthProvider";
 import { CartContext } from "../context/CartProvider";
+import { toast } from "react-toastify";
 
 function Kids() {
   const [kids, setKids] = useState([]);
@@ -18,9 +19,10 @@ function Kids() {
 
   const handleAddToCart = (product) => {
     if (user){
+      toast.success('Add to Cart')
       addToCart(product);
     }else{
-
+      toast.error('Please log in to Add Products to the Cart')
       navigate('/login');
     }
   };

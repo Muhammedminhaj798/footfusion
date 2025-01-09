@@ -114,7 +114,7 @@ const User = localStorage.getItem('loginUser')
       </ul>
       <div className="text-lg font-semibold mt-4">Total: ₹{calculateTotal()}</div>
       <button
-        className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        className="mt-4 w-full py-2 bg-green-900 text-white rounded-lg hover:bg-black transition"
         onClick={handlePayment}
       >
         Proceed To Checkout

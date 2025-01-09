@@ -20,9 +20,10 @@ function Man() {
   const handleAddToCart = (product) => {
     if (user) {
       addToCart(product);
-      alert('add to cart')
+      toast.success('Add to Cart')
     } else {
       navigate("/login");
+      toast.error('Please log in to Add Products to the Cart')
     }
   };
 

@@ -609,26 +609,6 @@
       "brand": "Recycled Shoes",
       "rating": 4.6,
       "reviews": 12
-    },
-    {
-      "id": "1031",
-      "name": "Tosca City Run",
-      "type": "kid",
-      "image": "https://i.pinimg.com/736x/c0/fb/b8/c0fbb88d0faa724ad4da725cd3279156.jpg",
-      "price": 649,
-      "qty": 1,
-      "description": "Tosca-colored city running shoes.",
-      "brand": "Recycled Shoes",
-      "rating": 4.4,
-      "reviews": 9
-    },
-    {
-      "id": "38a2",
-      "name": "rinshad",
-      "brand": "gay",
-      "price": "100",
-      "type": "men",
-      "image": "https://i.pinimg.com/736x/f6/b4/f9/f6b4f93cc879b5445568769fd88027ab.jpg"
     }
   ],
   "user": [
@@ -659,16 +639,16 @@
       "block": false,
       "cart": [
         {
-          "id": "11",
-          "name": "nihal",
-          "type": "men",
-          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-013-600x600.jpg",
-          "price": "15220",
+          "id": "1009",
+          "name": "Black Running",
+          "type": "kid",
+          "image": "https://i.pinimg.com/736x/e4/80/72/e48072ae236828a63a644de0af8f4e41.jpg",
+          "price": 799,
           "qty": 1,
-          "description": "Chocolate-colored running shoes for women.",
-          "brand": "abidas",
-          "rating": 4.4,
-          "reviews": 8
+          "description": "Comfortable and durable black running shoes for men.",
+          "brand": "Recycled Shoes",
+          "rating": 4.5,
+          "reviews": 12
         }
       ]
     },

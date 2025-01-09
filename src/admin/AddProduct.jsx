@@ -30,8 +30,12 @@ function AddProduct() {
         type: input.type,
         image: input.image,
       });
-      toast.success("Add product successfuly");
-      navigate("/admin-product");
+      toast.success("Add product successfuly",{
+        onClose : () => {
+          navigate("/admin-product");
+          window.location.reload()
+        }
+      });
     } catch (error) {
       console.error("error is : ", error);
     }

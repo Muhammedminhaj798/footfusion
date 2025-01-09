@@ -1,7 +1,8 @@
-import  { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UsersContext } from "../context/UserContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { ArrowLeft } from "lucide-react";
 
 function UserDetails() {
   const { datas } = useContext(UsersContext);
@@ -17,39 +18,31 @@ function UserDetails() {
   useEffect(() => {
     const filter = datas.find((filt) => filt.id === id);
     console.log("harashmentn : ", filter);
-
   }, [datas, id]);
 
-  const blockUser = async(e) => {
+  const blockUser = async (e) => {
     e.preventDefault();
-    if(stated?.block === false){
-      try{
-        const response = await axios.patch(`http://localhost:3000/user/${id}`,{
-          block : true
+    if (stated?.block === false) {
+      try {
+        const response = await axios.patch(`http://localhost:3000/user/${id}`, {
+          block: true,
         });
-        
-        setState(response.data)
-     
 
-      }catch(error){
+        setState(response.data);
+      } catch (error) {
         console.log(error);
-
+      }
+    } else if (stated?.block === true) {
+      try {
+        const response = await axios.patch(`http://localhost:3000/user/${id}`, {
+          block: false,
+        });
+        setState(response.data);
+      } catch (error) {
+        console.log(error);
       }
     }
-    else if(stated?.block === true){
-      try{
-        const response = await axios.patch(`http://localhost:3000/user/${id}`,{
-          block : false
-        });
-        setState(response.data)
-
-      }catch(error){
-        console.log(error);
-
-      }
-    }
-
-  }
+  };
 
   // const blockUser = async () => {
   //   try {
@@ -59,27 +52,29 @@ function UserDetails() {
   //       });
 
   //       console.log(response.data);
-        
+
   //     } else {
   //       const response = await axios.patch(`http://localhost:3000/user/${id}`, {
   //         block: false,
   //       });
   //       console.log(response.data);
-        
+
   //     }
-      
+
   //   } catch (error) {
   //     console.error(error);
-      
+
   //   }
 
   // };
 
-  console.log(stated)
+  console.log(stated);
 
   return (
-    
     <div className="pl-[300px] pt-20">
+      <Link to={'/admin_users'}>
+        <ArrowLeft />
+      </Link>
       <div key={stated?.id}>
         <div className="flex bg-yellow-500 mx-24 w-[450px]">
           <img
@@ -101,7 +96,7 @@ function UserDetails() {
 
             <div className="pb-3">
               <button className="bg-red-500 w-20 " onClick={blockUser}>
-                {stated?.block  ? "unblock" : "block"}
+                {stated?.block ? "unblock" : "block"}
               </button>
             </div>
           </div>

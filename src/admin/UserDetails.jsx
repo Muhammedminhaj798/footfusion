@@ -12,13 +12,12 @@ function UserDetails() {
   useEffect(() => {
     const filter = datas.find((filt) => filt.id === id);
     setState(filter);
-    console.log("syfhg", filter);
+    console.log("filtered", filter);
   }, [datas, id]);
 
-  useEffect(() => {
-    const filter = datas.find((filt) => filt.id === id);
-    console.log("harashmentn : ", filter);
-  }, [datas, id]);
+  // useEffect(() => {
+  //   const filter = datas.find((filt) => filt.id === id);
+  // }, [datas, id]);
 
   const blockUser = async (e) => {
     e.preventDefault();
@@ -27,7 +26,6 @@ function UserDetails() {
         const response = await axios.patch(`http://localhost:3000/user/${id}`, {
           block: true,
         });
-
         setState(response.data);
       } catch (error) {
         console.log(error);
@@ -76,7 +74,7 @@ function UserDetails() {
         <ArrowLeft />
       </Link>
       <div key={stated?.id}>
-        <div className="flex bg-yellow-500 mx-24 w-[450px]">
+        <div className="flex border pr-8 mx-24 w-[450px]">
           <img
             className="w-32 mx-14"
             src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"

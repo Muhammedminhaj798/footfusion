@@ -24,7 +24,7 @@ function Profile() {
       <div className="flex items-center justify-center h-screen bg-green-200">
        
           {loggedInUser ? (
-            <div className=" p-14 mt-24 rounded-lg -lg shadowh-[400px] w-[700px] bg-green-300">
+            <div className=" p-14 mt-24 rounded-lg -lg shadowh-[400px] w-[700px] bg-white">
               <CircleUser className="w-36 h-28 mt-1" />
               <br />
               <br />

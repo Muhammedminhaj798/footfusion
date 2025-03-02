@@ -7,7 +7,7 @@ function Payment() {
   const [data, setData] = useState([])
   const {cart, setCart} = useContext(CartContext)
   const navigate = useNavigate()
-
+ console.log(data)
 
 
 

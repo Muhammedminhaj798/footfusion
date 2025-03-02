@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -17,7 +18,7 @@ function CartProvider({ children }) {
     const loggedInUser = JSON.parse(localStorage.getItem("loginUser"));
     if (!loggedInUser) {
       console.error("User not logged in.");
-      alert('user not log in.')
+      toast.success('user not logged in.')
       return;
     }
     const existingProduct = cart.find((item) => item.id === product.id);

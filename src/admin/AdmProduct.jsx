@@ -8,14 +8,7 @@ import { toast } from "react-toastify";
 function AdmProduct() {
   const { data, fetch } = useContext(ProductContext);
   const [selectedCategory, setSelectedCategory] = useState("");
-  // const [product , setProduct] = useState({
-  //   name : '',
-  //   brand : '',
-  //   price : '',
-  //   type : ''
-  // })
 
-  // Filtered data based on selected category
   const filteredData = selectedCategory
     ? data.filter((item) => item.type === selectedCategory)
     : data;
@@ -33,10 +26,11 @@ function AdmProduct() {
     }
   };
 
-
   return (
-    <div className="w-11/12 max-w-[1000px] pt-20 mx-80 sm:px-8 md:px-16 lg:px-32">
-      {/* Dropdown for Filtering */}
+    <div
+      className="w-11/12 max-w-[1000px] pt-20 mx-80 sm:px-8 md:px-16 lg:px-32
+    "
+    >
       <div className="mb-5">
         <label htmlFor="category" className="block mb-2 font-medium">
           Category:
@@ -83,13 +77,11 @@ function AdmProduct() {
               <tr key={item.id || index}>
                 <td className="p-2 border">{index + 1}</td>
                 <td className="p-2 border">
-                  <Link to={`productdetails/${item.id}`}>
                     <img
                       src={item.image}
                       alt={item.name}
                       className="w-12 h-12 object-cover"
                     />
-                  </Link>
                 </td>
                 <td className="p-2 border">{item.name}</td>
                 <td className="p-2 border">{item.type}</td>
@@ -105,7 +97,7 @@ function AdmProduct() {
                 </td>
                 <td className="p-2 border">
                   <Link to={`/edit_product/${item.id}`}>
-                    <button >
+                    <button>
                       <Pencil />
                     </button>
                   </Link>

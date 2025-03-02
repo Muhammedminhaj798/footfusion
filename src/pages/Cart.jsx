@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ArrowLeft } from "lucide-react";
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useContext(CartContext);
@@ -67,8 +68,10 @@ const User = localStorage.getItem('loginUser')
 
 
   return (
-
     <div className="container mx-auto p-4 pt-36 h-screen">
+      <Link to={'/'}>
+      <ArrowLeft className="hover:border border-black rounded-full"/>
+      </Link>
       <h2 className="text-2xl font-bold mb-4 text-center">Your Cart</h2>
       <ul className="space-y-4">
         {cart.map((item) => (

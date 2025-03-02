@@ -1,21 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
+import { ShoppingCart } from 'lucide-react';
+import { UserRound } from 'lucide-react'
 import { ProductContext } from "../context/Context";
 
 function Navbar() {
   const [input, setInput] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const { data } = useContext(ProductContext);
-  const navigate = useNavigate();
-
   const inputChange = (event) => {
     setInput(event.target.value);
   };
 
   const filtered = data.filter((item) => {
-    console.log(item.id)
     const word = input.toLowerCase().trim();
     return (
       item.name.toLowerCase().includes(word) ||
@@ -97,10 +94,12 @@ function Navbar() {
               </Link>
             ))}
             <Link to="/cart">
-              <FaShoppingCart className="text-xl text-green-800" />
+              <ShoppingCart
+               className="text-xl text-green-800" />
             </Link>
             <Link to="/profile">
-              <CgProfile className="text-xl text-green-800" />
+              < UserRound
+              className="text-xl text-green-800" />
             </Link>
           </div>
 
@@ -143,7 +142,7 @@ function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="py-2"
             >
-              <CgProfile className="text-xl" />
+              <UserRound className="text-xl" />
             </Link>
           </div>
         )}

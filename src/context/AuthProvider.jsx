@@ -10,11 +10,6 @@ function AuthProvider({children}) {
             setUser(JSON.parse(savedUser));
         }
     },[])
-
-
-
-
-
   return (
     <div>
       <AuthContext.Provider value={{user}}>

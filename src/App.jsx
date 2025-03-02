@@ -1,8 +1,8 @@
 // import React from "react";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
-import Register from "./Register";
-import Login from "./Login";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Navbar from "./Navbar/Navbar";
 import Women from "./components/Women";
@@ -18,7 +18,6 @@ import UsersProvider from "./context/UserContext";
 import AuthProvider from "./context/AuthProvider";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
-// import HomeAdmin from "./admin/HomeAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
 import AdmProduct from "./admin/AdmProduct";
 import Users from "./admin/Users";
@@ -29,6 +28,8 @@ import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
 import SearchBar from "./components/SearchBar";
 import Orders from "./admin/Orders";
+import Dashboard from "./admin/Dashboard";
+
 
 function App() {
   const admin = localStorage.getItem("Admin");
@@ -85,6 +86,7 @@ function App() {
             <>
               <HomeAdmin />
               <Routes>
+                <Route path="/admin_dashboard"element={<Dashboard/>}/>
                 <Route path="/admin_home" element={<HomeAdmin />} />
                 <Route path="/admin-product" element={<AdmProduct />} />
                 <Route path="/admin_users" element={<Users />} />

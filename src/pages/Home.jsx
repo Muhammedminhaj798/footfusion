@@ -26,7 +26,6 @@ function Home() {
             alt=""
           />
         </div>
-        <Man />
       </div>
     </div>
   );

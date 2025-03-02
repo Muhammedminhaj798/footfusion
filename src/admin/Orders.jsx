@@ -18,7 +18,9 @@ function Orders() {
   }, []);
  let number = 1;
   return (
-    <div className="mx-80 w-[1000px] p-4">
+    <>
+        <h1 className="text-2xl ml-[350px] pt-12"><u>total orders</u></h1>
+    <div className="mx-80 w-[1000px] p-4 pt-20">
       <table className="w-full text-left border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
@@ -34,18 +36,19 @@ function Orders() {
           {order.map((item, index) =>
             item.products.map((product, productIndex) => (
               <tr key={`${index}-${productIndex}`} className="h-12">
-                <td>{number ++}</td>
-                <td className="text-xl p-2 border">{product.productName}</td>
-                <td className="text-xl p-2 border">{item.username}</td>
-                <td className="text-xl p-2 border">{item.address}</td>
-                <td className="text-xl p-2 border">{product.qty}</td>
-                <td className="text-xl p-2 border">{product.price || "N/A"}</td>
+                <td className="p-2 border">{number ++}</td>
+                <td className="p-2 border">{product.productName}</td>
+                <td className="p-2 border">{item.username}</td>
+                <td className="p-2 border">{item.address}</td>
+                <td className="p-2 border">{product.qty}</td>
+                <td className="p-2 border">{product.price || "N/A"}</td>
               </tr>
             ))
           )}
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 

@@ -44,7 +44,7 @@ function EditProduct() {
       console.error("Error updating product:", error);
       toast.error("Failed to update product");
     }
-  };
+  }; 
 
   return (
     <div className="mx-[500px] pt-32">

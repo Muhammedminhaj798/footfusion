@@ -10,11 +10,11 @@ function HomeAdmin() {
   const clickToLogout = () => {
     localStorage.removeItem("loginUser");
     localStorage.removeItem("Admin");
-    toast.success("Admin page is logout successfully",{
-      onClose:()=>{
-        navigate('/')
-        window.location.reload()
-      }
+    toast.success("Admin page is logout successfully", {
+      onClose: () => {
+        navigate("/");
+        window.location.reload();
+      },
     });
   };
 
@@ -22,6 +22,11 @@ function HomeAdmin() {
     <div className="fixed w-1/5 bg-slate-100 flex flex-col justify-between h-screen py-6 px-12">
       <h1 className="text-center text-2xl">Foot Fusion</h1>
       <div className="  flex flex-col  items-center gap-4 text-xl">
+        <Link to="/admin_dashboard">
+          <button className="text-center text-slate-500 hover:text-black">
+            Dashboard
+          </button>
+        </Link>
         <Link to="/admin-product">
           <button className="text-center  text-slate-500 hover:text-black">
             Products

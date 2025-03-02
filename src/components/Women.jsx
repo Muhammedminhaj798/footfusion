@@ -33,7 +33,9 @@ function Women() {
   if (!data || data.length === 0) {
     return <div className="text-center text-gray-600 mt-20">Loading...</div>;
   }
-
+  // useEffect(()=>{
+  //   window.scroll(0,0)
+  // },[])
   return (
     <div>
       <h1 className='text-2xl font-serif mt-4 ml-8'>Womens Collections</h1>
@@ -59,7 +61,7 @@ function Women() {
               </span>
               <button
                 onClick={() => handleAddToCart(item)}
-                className="bg-blue-500 text-white text-sm px-3 py-2 rounded hover:bg-blue-600 transition"
+                className="bg-green-900 text-white text-sm px-3 py-2 rounded hover:bg-black transition"
               >
                 Add to Cart
               </button>

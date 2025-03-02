@@ -11,11 +11,13 @@ function Man() {
   const { addToCart, cart } = useContext(CartContext);
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     if (data && data.length > 0) {
       setMen(data.filter((man) => man.type === "men"));
     }
   }, [data]);
+
 
   const handleAddToCart = (product) => {
     if (user) {
@@ -26,16 +28,21 @@ function Man() {
       toast.error('Please log in to Add Products to the Cart')
     }
   };
+    
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
 
   if (!data || data.length === 0) {
     return <div>Loading...</div>;
   }
 
+  
   return (
     <div>
       <h1 className='text-2xl font-serif mt-4 ml-8'>Mens Collections</h1>
       <hr/>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
       {men.map((item) => (
         <div
           key={item.id} 

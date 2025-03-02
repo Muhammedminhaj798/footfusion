@@ -12,6 +12,8 @@ function Kids() {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
+console.log(kids);
+
   useEffect(() => {
     const filter = data.filter((kidd) => kidd.type === "kid");
     setKids(filter);

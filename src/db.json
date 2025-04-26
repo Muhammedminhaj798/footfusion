@@ -9,7 +9,7 @@
       "qty": 1,
       "description": "Chocolate-colored running shoes for women.",
       "brand": "abidas",
-      "rating": 4,
+      "rating": 5,
       "reviews": 8
     },
     {
@@ -609,6 +609,14 @@
       "brand": "Recycled Shoes",
       "rating": 4.6,
       "reviews": 12
+    },
+    {
+      "id": "692d",
+      "name": "ppRSD",
+      "brand": "NIKE",
+      "price": "2000",
+      "type": "men",
+      "image": "https://imgs.search.brave.com/c3ktvSsHgF-NF-97ANzusYQXMwvmcU9BqXSj5PcZZbc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zdGlt/Zy5jYXJkZWtoby5j/b20vY2FyLWltYWdl/cy9jYXJleHRlcmlv/cmltYWdlcy9sYXJn/ZS9IaW5kdXN0YW5N/b3RvcnMvSGluZHVz/dGFuLU1vdG9ycy1B/bWJhc3NhZG9yLUF2/aWdvLTE4MDAtSVNa/LU1QRkkvZnJvbnQt/bGVmdC1zaWRlLTA0/Ny5qcGc_aW13aWR0/aD04OTAmaW1wb2xp/Y3k9cmVzaXpl"
     }
   ],
   "user": [
@@ -639,16 +647,28 @@
       "block": false,
       "cart": [
         {
-          "id": "9bc3",
-          "name": "Black Flame",
-          "description": "Archival flame prints set your style ablaze",
-          "type": "men",
-          "price": "4000",
-          "brand": "Converse",
-          "rating": 1,
-          "reviews": "2",
-          "image": "https://www.converse.in/media/catalog/product/a/0/a07553c_c_08x1.jpg",
-          "qty": 1
+          "id": "14",
+          "name": "Mint Sneaker",
+          "type": "women",
+          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-010-600x600.jpg",
+          "price": 899,
+          "qty": 3,
+          "description": "Fresh mint sneakers with a sleek design.",
+          "brand": "Recycled Shoes",
+          "rating": 4,
+          "reviews": 10
+        },
+        {
+          "id": "13",
+          "name": "Green Training",
+          "type": "women",
+          "image": "https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-product-image-001-600x600.jpg",
+          "price": 449,
+          "qty": 5,
+          "description": "Green training shoes for women.",
+          "brand": "Recycled Shoes",
+          "rating": 3,
+          "reviews": 13
         }
       ]
     },
@@ -703,6 +723,33 @@
       "email": "ashiq123@gmail.com",
       "password": "121212",
       "cpassword": "121212",
+      "role": "user",
+      "block": false
+    },
+    {
+      "id": "83ef",
+      "username": "ribishan",
+      "email": "ribishan@gmail.com",
+      "password": "1234",
+      "cpassword": "1234",
+      "role": "user",
+      "block": false
+    },
+    {
+      "id": "c0a3",
+      "username": "dilshad",
+      "email": "dilshad123@gmail.com",
+      "password": "123123",
+      "cpassword": "123123",
+      "role": "user",
+      "block": false
+    },
+    {
+      "id": "ecdb",
+      "username": "dilshad",
+      "email": "dilshad123@gmail.com",
+      "password": "123123",
+      "cpassword": "123123",
       "role": "user",
       "block": false
     }

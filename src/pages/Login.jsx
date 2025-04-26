@@ -24,22 +24,18 @@ function Login() {
     e.preventDefault();
     const user = datas.find(
       (item) =>
-        item.email === input.email &&
-        item.password === input.password &&
-        item.block === false
+        item.email == input.email &&
+        item.password == input.password &&
+        item.block == false
     );
+    
     if (!user) {
       toast.error("Invalid email or password, or account is blocked.");
       navigate("/register");
       return;
     }
 
-    // if (user.block === true) {
-    //   toast.error("Your account is temporarily blocked.");
-    //   navigate("/register");
-    //   return;
-    // }
-
+   
     if (user.role === "admin") {
       toast.success("Welcome admin", {
         onClose: () => {
@@ -58,6 +54,7 @@ function Login() {
       });
     }
   };
+  setInput({email: "", password:""})
 
   const handleChange = (e) => {
     const name = e.target.name;

@@ -11,6 +11,7 @@ function Man() {
   const { addToCart, cart } = useContext(CartContext);
   const navigate = useNavigate();
 
+  console.log("daatata : ", men);
   
   useEffect(() => {
     if (data && data.length > 0) {
@@ -48,7 +49,7 @@ function Man() {
           key={item.id} 
           className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
         >
-          <Link to={`productdetails/${item.id}`}>
+          <Link to={`/productdetails/${item.id}`}>
             <img
               src={item.image}
               alt={item.name}

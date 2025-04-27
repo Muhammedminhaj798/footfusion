@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
-import { UsersContext } from "../context/UserContext";
+import axios from "axios";
+// import { UsersContext } from "../context/UserContext";
 import { toast } from "react-toastify";
 
 function Login() {
@@ -9,52 +9,86 @@ function Login() {
     email: "",
     password: "",
   });
-  const { datas } = useContext(UsersContext);
-  // console.log("ofgaf", datas);
-
-  // const [ setFocus] = useState({
-  //   errName: false,
-  //   errEmail: false,
-  //   errPassword: false,
-  // });
+  // const { datas } = useContext(UsersContext);
 
   const navigate = useNavigate();
 
-  const handleData = async (e) => {
-    e.preventDefault();
-    const user = datas.find(
-      (item) =>
-        item.email == input.email &&
-        item.password == input.password &&
-        item.block == false
-    );
+  // const handleData = async (e) => {
+  //   e.preventDefault();
+  //   const user = datas.find(
+  //     (item) =>
+  //       item.email == input.email &&
+  //       item.password == input.password &&
+  //       item.block == false
+  //   );
     
-    if (!user) {
-      toast.error("Invalid email or password, or account is blocked.");
-      navigate("/register");
-      return;
-    }
+  //   if (!user) {
+  //     toast.error("Invalid email or password, or account is blocked.");
+  //     navigate("/register");
+  //     return;
+  //   }
 
    
-    if (user.role === "admin") {
-      toast.success("Welcome admin", {
-        onClose: () => {
-          navigate("/admin_dashboard");
-          window.location.reload();
+  //   if (user.role === "admin") {
+  //     toast.success("Welcome admin", {
+  //       onClose: () => {
+  //         navigate("/admin_dashboard");
+  //         window.location.reload();
+  //       },
+  //     });
+  //     localStorage.setItem("Admin", JSON.stringify(user));
+  //   } else if (user.role === "user") {
+  //     localStorage.setItem("loginUser", JSON.stringify(user));
+  //     toast.success("Login successful", {
+  //       onClose: () => {
+  //         navigate("/");
+  //         window.location.reload();
+  //       },
+  //     });
+  //   }
+  // };
+  const handleData = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        {
+          email: input.email,
+          password: input.password,
         },
-      });
-      localStorage.setItem("Admin", JSON.stringify(user));
-    } else if (user.role === "user") {
-      localStorage.setItem("loginUser", JSON.stringify(user));
-      toast.success("Login successful", {
-        onClose: () => {
-          navigate("/");
-          window.location.reload();
-        },
-      });
+        {
+          withCredentials: true, // because backend is setting cookies
+        }
+      );
+  
+      const user = response.data.data; // backend returns user data here
+  
+      if (response.data.isAdmin) {
+        toast.success("Welcome admin", {
+          onClose: () => {
+            navigate("/admin_dashboard");
+            window.location.reload();
+          },
+        });
+        localStorage.setItem("Admin", JSON.stringify(user));
+      } else {
+        localStorage.setItem("loginUser", JSON.stringify(user));
+        toast.success("Login successful", {
+          onClose: () => {
+            navigate("/");
+            window.location.reload();
+          },
+        });
+      }
+
+      setInput({email: "", password:""})
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response?.data?.message || "Login failed");
     }
   };
-  setInput({email: "", password:""})
+  
+  
 
   const handleChange = (e) => {
     const name = e.target.name;

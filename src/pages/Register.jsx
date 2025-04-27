@@ -22,15 +22,43 @@ function Register() {
 
   const navigate = useNavigate();
 
+  const handleData = async (e) => {
+    e.preventDefault();
+    if (input.password !== input.cpassword) {
+      // alert("Passwords do not match");
+      toast.warning('Passwords do not match')
+      return;
+    }
+    try {
+      await axios.post("http://localhost:8080/api/auth/register", {
+        name: input.username,
+        email: input.email,
+        password: input.password,
+        isAdmin: false,
+        isBlocked: false
+      }, {
+        withCredentials: true // important for sending cookies
+      });
+      
+
+      // alert("user registered successfully");
+      toast.success('user registered successfully')
+      navigate("/login");
+    } catch (error) {
+      
+      // alert("An error occurred while registering. Please try again.");
+      toast.error("An error occurred while registering. Please try again.")
+    }
+  };
+
   // const handleData = async (e) => {
   //   e.preventDefault();
   //   if (input.password !== input.cpassword) {
-  //     // alert("Passwords do not match");
-  //     toast.warning('Passwords do not match')
+  //     toast.warning('Passwords do not match');
   //     return;
   //   }
   //   try {
-  //     await axios.post("http://localhost:3000/api/auth/register", {
+  //     await axios.post("http://localhost:8080/api/auth/register", {
   //       username: input.username,
   //       email: input.email,
   //       password: input.password,
@@ -38,44 +66,15 @@ function Register() {
   //       role: "user",
   //       block: false
   //     }, {
-  //       withCredentials: true // important for sending cookies
+  //       withCredentials: true
   //     });
-      
-
-  //     // alert("user registered successfully");
-  //     toast.success('user registered successfully')
+  
+  //     toast.success('User registered successfully');
   //     navigate("/login");
   //   } catch (error) {
-      
-  //     // alert("An error occurred while registering. Please try again.");
-  //     toast.error("An error occurred while registering. Please try again.")
+  //     toast.error(error.response?.data?.message || "An error occurred while registering. Please try again.");
   //   }
   // };
-
-  const handleData = async (e) => {
-    e.preventDefault();
-    if (input.password !== input.cpassword) {
-      toast.warning('Passwords do not match');
-      return;
-    }
-    try {
-      await axios.post("http://localhost:3000/api/auth/register", {
-        username: input.username,
-        email: input.email,
-        password: input.password,
-        cpassword: input.cpassword,
-        role: "user",
-        block: false
-      }, {
-        withCredentials: true
-      });
-  
-      toast.success('User registered successfully');
-      navigate("/login");
-    } catch (error) {
-      toast.error(error.response?.data?.message || "An error occurred while registering. Please try again.");
-    }
-  };
   
 
   const handleChange = (e) => {

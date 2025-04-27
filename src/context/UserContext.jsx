@@ -7,7 +7,7 @@ function UserContext({ children }) {
 
   useEffect(() => {
     const featch = async () => {
-      const response = await axios.get("http://localhost:3000/user");
+      const response = await axios.get("http://localhost:8080/api/admin/usersList");
       setDatas(response.data);
     };
     featch();

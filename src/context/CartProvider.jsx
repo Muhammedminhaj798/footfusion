@@ -36,7 +36,7 @@ function CartProvider({ children }) {
     try {
       const updatedUser = { ...loggedInUser, cart: updatedCart };
       await axios.put(
-        `http://localhost:3000/user/${loggedInUser.id}`,
+        `http://localhost:8080/api/user/updateUserCart/${loggedInUser.id}`,
         updatedUser
       );
       localStorage.setItem("loginUser", JSON.stringify(updatedUser));

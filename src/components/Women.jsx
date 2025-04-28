@@ -20,16 +20,29 @@ function Women() {
   }, [data]);
 
   //click the button function
-  const handleAddToCart = (product) => {
-    if (user) {
-      addToCart(product);
-      toast.success('Add to Cart')
-    } else {
-      toast.error('Please log in to Add Products to the Cart')
-      navigate("/login");
-    }
-  };
+  // const handleAddToCart = (product) => {
+  //   if (user) {
+  //     addToCart(product);
+  //     toast.success('Add to Cart')
+  //   } else {
+  //     toast.error('Please log in to Add Products to the Cart')
+  //     navigate("/login");
+  //   }
+  // };
 
+  const handleAddToCart = (productId,quantity) => {
+    try {
+      if(user){
+        addToCart(productId,quantity)
+        toast.success("Add to cart")
+      }else{
+        navigate("/login")
+        toast.error("Please log in to Add products to the cart")
+      }
+    } catch (error) {
+      console.log("cart error :",error)
+    }
+  }
   if (!data || data.length === 0) {
     return <div className="text-center text-gray-600 mt-20">Loading...</div>;
   }

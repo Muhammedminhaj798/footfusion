@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../context/Context";
 import { AuthContext } from "../context/AuthProvider";
 import { CartContext } from "../context/CartProvider";
+import { toast } from "react-toastify";
 
 function Man() {
   const [men, setMen] = useState([]);
@@ -20,14 +21,20 @@ function Man() {
   }, [data]);
 
 
-  const handleAddToCart = (product) => {
-    if (user) {
-      addToCart(product);
-      toast.success('Add to Cart')
-    } else {
-      navigate("/login");
-      toast.error('Please log in to Add Products to the Cart')
+  const handleAddToCart = (productId,quantity) => {
+    try {
+      if (user) {
+        addToCart(productId,quantity);
+        toast.success('Add to Cart')
+      } else {
+        navigate("/login");
+        toast.error('Please log in to Add Products to the Cart')
+      }
+    } catch (error) {
+      console.log("cart error:",error);
+      
     }
+ 
   };
     
   useEffect(()=>{
@@ -46,10 +53,10 @@ function Man() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
       {men.map((item) => (
         <div
-          key={item.id} 
+          key={item._id} 
           className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
         >
-          <Link to={`/productdetails/${item.id}`}>
+          <Link to={`/productdetails/${item._id}`}>
             <img
               src={item.image}
               alt={item.name}
@@ -63,7 +70,7 @@ function Man() {
                 ₹{item.price}
               </span>
               <button
-                onClick={() => handleAddToCart(item)}
+                onClick={() => handleAddToCart(item._id,item.quantity>1?item.quantity:1)}
                 className="bg-green-900 text-white px-4 py-2 rounded hover:bg-black transition"
               >
                 Add to Cart

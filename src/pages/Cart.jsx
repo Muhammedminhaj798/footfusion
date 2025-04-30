@@ -73,9 +73,9 @@
 //     <Link to={'/'}>
 //       <ArrowLeft className="hover:border border-black rounded-full" />
 //     </Link>
-  
+
 //     <h2 className="text-2xl font-bold mb-4 text-center">Your Cart</h2>
-  
+
 //     <ul className="space-y-4">
 //       {cart.products?.map((item) => (
 //         <li
@@ -95,7 +95,7 @@
 //             <p className="text-sm text-gray-600">
 //               Total Price: ₹{item.productId.price * item.quantity}
 //             </p>
-  
+
 //             <div className="flex items-center mt-2">
 //               <button
 //                 className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
@@ -111,7 +111,7 @@
 //                 +
 //               </button>
 //             </div>
-  
+
 //             <button
 //               className="mt-2 px-3 py-1 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition"
 //               onClick={() => handleRemoveFromCart(item._id)}
@@ -122,25 +122,25 @@
 //         </li>
 //       ))}
 //     </ul>
-  
+
 //     <div className="text-lg font-semibold mt-4">
 //       Total: ₹{calculateTotal()}
 //     </div>
-  
+
 //     <button
 //       className="mt-4 w-full py-2 bg-green-900 text-white rounded-lg hover:bg-black transition"
 //       onClick={handlePayment}
 //     >
 //       Proceed To Checkout
 //     </button>
-  
+
 //     {showNotification && (
 //       <div className="fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-md">
 //         Product removed from cart
 //       </div>
 //     )}
 //   </div>
-  
+
 //   );
 // };
 
@@ -197,14 +197,17 @@ const Cart = () => {
     updateCartInDatabase(updatedCart);
   };
 
-  const handleRemoveFromCart = async(id) => {
-    const updatedCart = await axiosInstance.delete(`/user/removeFromCart/${id}`)
-    console.log("updated cart", updatedCart);
-   await getCart()
-    
+  const handleRemoveFromCart = async (id) => {
+    try {
+      const updatedCart = await axiosInstance.patch(`/user/removeFromCart/${id}`)
+      console.log("updated cart", updatedCart);
+      await getCart()
+    } catch (error) {
+      console.log(error);
+    }
+
     setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 3000);
-    
+
   };
 
   // ✅ UPDATED calculateTotal function

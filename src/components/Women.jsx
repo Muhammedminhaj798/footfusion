@@ -59,7 +59,7 @@ function Women() {
           key={item.id}
           className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
         >
-          <Link to={`productdetails/${item.id}`}>
+          <Link to={`productdetails/${item._id}`}>
             <img
               src={item.image}
               alt={item.name}

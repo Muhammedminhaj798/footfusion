@@ -7,6 +7,7 @@ export const CartContext = createContext();
 
 function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [addCart, setAddCart] = useState('')
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loginUser"));
@@ -49,6 +50,8 @@ function CartProvider({ children }) {
   const addToCart=async(productId,quantity)=>{
     try {
       const response=await axiosInstance.post('/user/updateUserCart',{productId,quantity})
+      setAddCart(response.data)
+
     } catch (error) {
       console.log(error);
       

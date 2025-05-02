@@ -210,7 +210,7 @@ const Cart = () => {
 
   };
 
-  // ✅ UPDATED calculateTotal function
+ 
   const calculateTotal = () => {
     if (!cart || !cart.products) return 0;
     return cart.products.reduce(

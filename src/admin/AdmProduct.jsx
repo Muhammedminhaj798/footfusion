@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import axiosInstance from "../AxiosInstence";
 
 function AdmProduct() {
   const { data, fetch } = useContext(ProductContext);
@@ -15,10 +16,10 @@ function AdmProduct() {
 
   const deletedProduct = async (id) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/product/${id}`
+      const response = await axiosInstance.put(
+        `/admin/productDeleted/${id}`
       );
-      console.log(response.data);
+      console.log(response.data.data);
       fetch();
       toast.success("product is deleted");
     } catch (error) {
@@ -89,7 +90,7 @@ function AdmProduct() {
                 <td className="p-2 border">{item.price}</td>
                 <td className="p-2 border">
                   <button
-                    onClick={() => deletedProduct(item.id)}
+                    onClick={() => deletedProduct(item._id)}
                     className="text-red-500"
                   >
                     <Trash2 />

@@ -30,13 +30,13 @@ function Profile() {
               <br />
               <h1 className="">
                 <label className="font-bold text-2xl"> User name:</label>{" "}
-                {loggedInUser.username}
+                <label className="font-bold text-1xl" >{loggedInUser.name}</label>
               </h1>
               <br />
               <br />
               <h1 className="">
                 <label className="font-bold text-2xl"> E-mail: </label>
-                {loggedInUser?.email}
+                <label className="font-bold">{loggedInUser?.email} </label>
               </h1>
               <button
                 className="w-48 h-10 mx-[400px] mt-5 bg-red-500"

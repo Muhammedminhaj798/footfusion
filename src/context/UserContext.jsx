@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import axiosInstance from "../AxiosInstence";
 
 export const UsersContext = createContext();
 function UserContext({ children }) {
@@ -7,8 +8,8 @@ function UserContext({ children }) {
 
   useEffect(() => {
     const featch = async () => {
-      const response = await axios.get("http://localhost:8080/api/admin/usersList");
-      setDatas(response.data);
+      const response = await axiosInstance.get('/admin/usersList');
+      setDatas(response.data.data);
     };
     featch();
   }, []);

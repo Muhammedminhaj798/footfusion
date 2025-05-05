@@ -1,15 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axiosInstance from "../AxiosInstence";
 
 function Orders() {
   const [order, setOrder] = useState([]);
+console.log("ordercdetaoilf:", order);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/orders");
-        setOrder(response.data);
-        console.log(response.data);
+        const response = await axiosInstance.get('/admin/getOrderDetails');
+        setOrder(response.data.data);
+        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
@@ -37,7 +39,7 @@ function Orders() {
             item.products.map((product, productIndex) => (
               <tr key={`${index}-${productIndex}`} className="h-12">
                 <td className="p-2 border">{number ++}</td>
-                <td className="p-2 border">{product.productName}</td>
+                <td className="p-2 border">{product.name}</td>
                 <td className="p-2 border">{item.username}</td>
                 <td className="p-2 border">{item.address}</td>
                 <td className="p-2 border">{product.qty}</td>

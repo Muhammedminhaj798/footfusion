@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import axiosInstance from "../AxiosInstence";
 
 export const ProductContext = createContext();
 
@@ -8,7 +9,7 @@ function Context({ children }) {
 
 const fetch = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/user/getAllProducts");
+    const response = await axiosInstance.get("/user/getAllProducts")
     setData(response.data.data); 
   } catch (error) {
     console.error("Error is : ", error);

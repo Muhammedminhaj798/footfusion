@@ -1,6 +1,6 @@
 // import React from "react";
 import "./index.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -29,6 +29,9 @@ import EditProduct from "./admin/EditProduct";
 import SearchBar from "./components/SearchBar";
 import Orders from "./admin/Orders";
 import Dashboard from "./admin/Dashboard";
+import Adminlogin from "./components/Adminlogin";
+import CheckoutSucces from "./pages/CheckoutSucces";
+import { BookOpenCheckIcon } from "lucide-react";
 
 
 function App() {
@@ -41,6 +44,7 @@ function App() {
           <Routes>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/login/admin" element={<Adminlogin/>}/>
             <Route path="/" element={<Home />} />
             <Route path="/women" element={<Women />} />
             <Route path="/collections" element={<Colloctions />} />
@@ -51,6 +55,7 @@ function App() {
             <Route path="/payment_details" element={<Payment />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/search_bar" element={<SearchBar />} />
+            <Route path="/CheckoutSuccess/:id" element={<CheckoutSucces/>}/>
 
             <Route
               path="/man/productdetails/:id"
@@ -75,9 +80,10 @@ function App() {
               path="/search_bar/productdetails/:id"
               element={<ProdectDetails />}
             />
+            
             <Route path="*" element={<h1>not found</h1>} />
           </Routes>
-
+          <Footer/>
         </>
       ) : (
 
@@ -105,7 +111,7 @@ function App() {
         </>
        
       )}
-       <Footer/>
+       
       <ToastContainer />
     </>
 

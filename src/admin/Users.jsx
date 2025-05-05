@@ -29,7 +29,7 @@ function Users() {
             <tr className="border h-12" key={item.id || index}>
               <td className="text-xl p-2 border">{index + 1}</td>
               <Link key={item.id} to={`user_details/${item.id}`}>
-                <td className="text-xl p-2 ">{item.username}</td>
+                <td className="text-xl p-2 ">{item.name}</td>
               </Link>
               <td className="text-xl p-2 border">{item.email}</td>
             </tr>

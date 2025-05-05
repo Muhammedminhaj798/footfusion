@@ -153,7 +153,7 @@ import { ArrowLeft } from "lucide-react";
 import axiosInstance from "../AxiosInstence";
 
 const Cart = () => {
-  const { cart, setCart, removeFromCart, getCart } = useContext(CartContext);
+  const { cart, setCart, removeFromCart, getCart,createOrder } = useContext(CartContext);
   const [user, setUser] = useState(null);
   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
@@ -183,11 +183,15 @@ const Cart = () => {
     }
   };
 
-  const handleIncreaseQty = (id) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, qty: item.qty + 1 } : item
-    );
-    updateCartInDatabase(updatedCart);
+  const handleIncreaseQty = async (productId, action) => {
+
+    try {
+
+      await axiosInstance.patch("/user/incrementProduct", { productId: productId, action: action })
+      await getCart()
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const handleDecreaseQty = (id) => {
@@ -210,7 +214,7 @@ const Cart = () => {
 
   };
 
- 
+
   const calculateTotal = () => {
     if (!cart || !cart.products) return 0;
     return cart.products.reduce(
@@ -219,8 +223,10 @@ const Cart = () => {
     );
   };
 
-  const handlePayment = () => navigate("/payment_details");
-
+  const handlePayment = async () => {
+   await createOrder()
+   navigate("/checkoutpayment")
+  }
   if (!cart || !cart.products || cart.products.length === 0)
     return <h2 className="pt-36 text-center text-2xl font-bold">Your Cart is empty!</h2>;
 
@@ -256,14 +262,14 @@ const Cart = () => {
               <div className="flex items-center mt-2">
                 <button
                   className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-                  onClick={() => handleDecreaseQty(item._id)}
+                  onClick={() => handleIncreaseQty(item.productId._id, "decrement")}
                 >
                   -
                 </button>
                 <span className="mx-2">{item.quantity}</span>
                 <button
                   className="px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
-                  onClick={() => handleIncreaseQty(item._id)}
+                  onClick={() => handleIncreaseQty(item.productId._id, "increment")}
                 >
                   +
                 </button>

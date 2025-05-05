@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ProductContext } from "../context/Context";
+import axiosInstance from "../AxiosInstence";
 
 function EditProduct() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ function EditProduct() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/product/${id}`);
+        const response = await axiosInstance.get(`/admin/adminProduct/${id}`);
         setInput(response.data); 
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -36,7 +37,7 @@ function EditProduct() {
   const handleData = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3000/product/${id}`, input);
+      await axiosInstance.patch(`/admin/adminProduct/${id}`, input);
       toast.success("Product updated successfully");
       fetch(); 
       navigate("/admin-product"); 

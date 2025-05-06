@@ -73,7 +73,7 @@ function Women() {
                 ₹{item.price}
               </span>
               <button
-                onClick={() => handleAddToCart(item)}
+                onClick={() => handleAddToCart(item._id,item.quantity>1?item.quantity:1)}
                 className="bg-green-900 text-white text-sm px-3 py-2 rounded hover:bg-black transition"
               >
                 Add to Cart

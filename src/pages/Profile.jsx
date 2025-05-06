@@ -5,10 +5,7 @@ import { CircleUser } from "lucide-react";
 function Profile() {
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
-  const clickToLogout = () => {
-    localStorage.removeItem("loginUser");
-    navigate("/");
-  };
+  
 
   const loggedInUser = JSON.parse(localStorage.getItem("loginUser"));
   //  useEffect(()=>{
@@ -59,6 +56,7 @@ function Profile() {
 
           )}
       </div>
+      
     </div>
   );
 }

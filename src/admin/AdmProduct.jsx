@@ -97,7 +97,7 @@ function AdmProduct() {
                   </button>
                 </td>
                 <td className="p-2 border">
-                  <Link to={`/edit_product/${item.id}`}>
+                  <Link to={`/edit_product/${item._id}`}>
                     <button>
                       <Pencil />
                     </button>

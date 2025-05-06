@@ -31,87 +31,92 @@ import Orders from "./admin/Orders";
 import Dashboard from "./admin/Dashboard";
 import Adminlogin from "./components/Adminlogin";
 import CheckoutSucces from "./pages/CheckoutSucces";
-import { BookOpenCheckIcon } from "lucide-react";
+// import { BookOpenCheckIcon } from "lucide-react";
+import Checkoutpayment from "./pages/StripePayment"
+import OrderDetails from "./components/OrderDetails";
 
 
 function App() {
   const admin = localStorage.getItem("Admin");
   return (
     <>
-      {!admin ? (
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/login/admin" element={<Adminlogin/>}/>
-            <Route path="/" element={<Home />} />
-            <Route path="/women" element={<Women />} />
-            <Route path="/collections" element={<Colloctions />} />
-            <Route path="/man" element={<Man />} />
-            <Route path="/kids" element={<Kids />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/payment_details" element={<Payment />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/search_bar" element={<SearchBar />} />
-            <Route path="/CheckoutSuccess/:id" element={<CheckoutSucces/>}/>
+      <>
+        {!admin && <Navbar />}
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/login/admin" element={<Adminlogin />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/collections" element={<Colloctions />} />
+          <Route path="/man" element={<Man />} />
+          <Route path="/kids" element={<Kids />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/payment_details" element={<Payment />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/search_bar" element={<SearchBar />} />
+          <Route path="/CheckoutSuccess/:sessionId" element={<CheckoutSucces />} />
+          <Route path="/checkoutpayment" element={<Checkoutpayment />} />
+          <Route path="/orders" element={<OrderDetails/>}/>
 
-            <Route
-              path="/man/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            <Route path="/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            <Route
-              path="/kids/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            <Route
-              path="/women/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            <Route
-              path="/collections/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            <Route
-              path="/search_bar/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            
-            <Route path="*" element={<h1>not found</h1>} />
-          </Routes>
-          <Footer/>
-        </>
-      ) : (
+          <Route
+            path="/man/productdetails/:id"
+            element={<ProdectDetails />}
+          />
+          <Route path="/productdetails/:id"
+            element={<ProdectDetails />}
+          />
+          <Route
+            path="/kids/productdetails/:id"
+            element={<ProdectDetails />}
+          />
+          <Route
+            path="/women/productdetails/:id"
+            element={<ProdectDetails />}
+          />
+          <Route
+            path="/collections/productdetails/:id"
+            element={<ProdectDetails />}
+          />
+          <Route
+            path="/search_bar/productdetails/:id"
+            element={<ProdectDetails />}
+          />
 
-        <>
-          <HomeAdmin />
-          <Routes>
-            <Route path="/admin_dashboard" element={<Dashboard />} />
-            <Route path="/admin_home" element={<HomeAdmin />} />
-            <Route path="/admin-product" element={<AdmProduct />} />
-            <Route path="/admin_users" element={<Users />} />
-            <Route path="/add_product" element={<AddProduct />} />
-            <Route path="/edit_product/:id" element={<EditProduct />} />
-            <Route path="/orders" element={<Orders />} />
-            {/* <Route path="/user_details" element={<UserDetails />} /> */}
-            <Route
-              path="/admin_home/productdetails/:id"
-              element={<ProdectDetails />}
-            />
-            <Route
-              path="/admin_users/user_details/:id"
-              element={<UserDetails />}
-            />
-            <Route path="*" element={<h1>not found</h1>} />
-          </Routes>
-        </>
-       
-      )}
-       
+          
+        </Routes>
+        {/* <Footer/> */}
+      </>
+      
+
+      <>
+        {admin &&
+          <>
+            <HomeAdmin />
+            <Routes>
+              <Route path="/admin_dashboard" element={<Dashboard />} />
+              <Route path="/admin_home" element={<HomeAdmin />} />
+              <Route path="/admin-product" element={<AdmProduct />} />
+              <Route path="/admin_users" element={<Users />} />
+              <Route path="/add_product" element={<AddProduct />} />
+              <Route path="/edit_product/:id" element={<EditProduct />} />
+              <Route path="/orders" element={<Orders />} />
+              {/* <Route path="/user_details" element={<UserDetails />} /> */}
+              <Route
+                path="/admin_home/productdetails/:id"
+                element={<ProdectDetails />}
+              />
+              <Route
+                path="/admin_users/user_details/:id"
+                element={<UserDetails />}
+              />
+              <Route path="*" element={<h1>not found</h1>} />
+            </Routes>
+          </>
+        }
+      </>
+
       <ToastContainer />
     </>
 

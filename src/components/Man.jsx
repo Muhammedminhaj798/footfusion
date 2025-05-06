@@ -9,12 +9,9 @@ function Man() {
   const [men, setMen] = useState([]);
   const { data } = useContext(ProductContext);
   const { user } = useContext(AuthContext);
-  console.log('gfdsasdfghj', user);
-  
   const { addToCart, cart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  console.log("daatata : ", men);
   
   useEffect(() => {
     if (data && data.length > 0) {
@@ -25,18 +22,16 @@ function Man() {
 
   const handleAddToCart = (productId,quantity) => {
     try {
-      if (user===null) {
+      if (!user) {
         navigate("/login")
-        toast.error("login ")
+        toast.error("Please login first")
       } else {
         addToCart(productId,quantity);
         toast.success('Add to Cart')
       }
     } catch (error) {
-      console.log("cart error:",error);
-      
+      console.log("cart error:",error); 
     }
- 
   };
     
   useEffect(()=>{

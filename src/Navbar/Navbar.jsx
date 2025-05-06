@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from 'lucide-react';
 import { UserRound } from 'lucide-react'
 import { ProductContext } from "../context/Context";
+import Example from "./Dropdown";
 
 function Navbar() {
   const [input, setInput] = useState("");
@@ -24,6 +25,7 @@ function Navbar() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
 
   return (
     <div className="bg-white w-full z-50 fixed top-0">
@@ -54,7 +56,7 @@ function Navbar() {
             {input && (
               <ul className="absolute left-0 w-full bg-white shadow-lg rounded-md max-h-48 overflow-auto z-50">
                 {filtered.map((item, index) => (
-                  <Link to={`productdetails/${item.id}`}>
+                  <Link to={`productdetails/${item._id}`}>
                   <li
                     key={index}
                     className="p-2 border-b cursor-pointer hover:bg-gray-100"
@@ -92,10 +94,11 @@ function Navbar() {
               <ShoppingCart
                className="text-xl text-green-800" />
             </Link>
-            <Link to="/profile">
+            {/* <Link to="/profile">
               < UserRound
               className="text-xl text-green-800" />
-            </Link>
+            </Link> */}
+            <Example/>
           </div>
 
 
@@ -108,7 +111,7 @@ function Navbar() {
             <span className="block w-6 h-0.5 bg-black"></span>
           </button>
         </div>
-
+        
         {/* Mobile menu */}
         {menuOpen && (
           <div className="absolute top-16 left-0 w-full bg-gray-800 text-white flex flex-col items-center py-4 z-40 md:hidden">
@@ -132,13 +135,14 @@ function Navbar() {
             <Link to="/cart" onClick={() => setMenuOpen(false)} className="py-2">
               <FaShoppingCart className="text-xl" />
             </Link>
-            <Link
-              to="/profile"
-              onClick={() => setMenuOpen(false)}
-              className="py-2"
-            >
-              <UserRound className="text-xl" />
-            </Link>
+            {/* <Link
+            //   to="/profile"
+            //   onClick={() => setMenuOpen(false)}
+            //   className="py-2"
+            // >
+            //   <UserRound className="text-xl" />
+            // </Link> */}
+            <Example/>
           </div>
         )}
       </nav>

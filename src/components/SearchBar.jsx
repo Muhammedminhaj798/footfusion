@@ -8,10 +8,10 @@ function SearchBar({ filtered }) {
       <div className="grid grid-cols-1 w-52  gap-6 p-6">
         {filtered.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
           >
-            <Link to={`productdetails/${item.id}`}>
+            <Link to={`productdetails/${item._id}`}>
               <img
                 src={item.image}
                 alt={item.name}

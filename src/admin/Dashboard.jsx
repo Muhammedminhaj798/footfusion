@@ -4,6 +4,7 @@ import { UsersContext } from '../context/UserContext'
 import { ProductContext } from '../context/Context'
 import { AuthContext } from '../context/AuthProvider'
 import { Link } from 'react-router-dom'
+import axiosInstance from '../AxiosInstence'
 
 
 function Dashboard() {
@@ -13,8 +14,8 @@ function Dashboard() {
     useEffect(() => {
         const fetchOrders = async () => {
           try {
-            const response = await axios.get("http://localhost:3000/orders");
-            setOrder(response.data);
+            const response = await axiosInstance.get('/admin/getOrderDetails');
+            setOrder(response.data.data);
             console.log(response.data);
           } catch (error) {
             console.error("Error fetching orders:", error);

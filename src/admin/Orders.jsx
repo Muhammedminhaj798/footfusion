@@ -29,7 +29,7 @@ console.log("ordercdetaoilf:", order);
             <th className="p-2 border">no.</th>
             <th className="p-2 border">Product Name</th>
             <th className="p-2 border">Username</th>
-            <th className="p-2 border">address</th>
+            {/* <th className="p-2 border">address</th> */}
             <th className="p-2 border">Quantity</th>
             <th className="p-2 border">Total Amount</th>
           </tr>
@@ -39,11 +39,11 @@ console.log("ordercdetaoilf:", order);
             item.products.map((product, productIndex) => (
               <tr key={`${index}-${productIndex}`} className="h-12">
                 <td className="p-2 border">{number ++}</td>
-                <td className="p-2 border">{product.name}</td>
-                <td className="p-2 border">{item.username}</td>
-                <td className="p-2 border">{item.address}</td>
-                <td className="p-2 border">{product.qty}</td>
-                <td className="p-2 border">{product.price || "N/A"}</td>
+                <td className="p-2 border">{product.productId.name}</td>
+                <td className="p-2 border">{item.name}</td>
+                {/* <td className="p-2 border">{item.address}</td> */}
+                <td className="p-2 border">{product.quantity}</td>
+                <td className="p-2 border">{product.totalAmount || "N/A"}</td>
               </tr>
             ))
           )}

@@ -11,7 +11,9 @@ function Kids() {
   const { user } = useContext(AuthContext);
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 console.log(kids);
 
   useEffect(() => {
@@ -19,10 +21,10 @@ console.log(kids);
     setKids(filter);
   }, [data]);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product,quantity) => {
     if (user) {
       toast.success("Add to Cart");
-      addToCart(product);
+      addToCart(product,quantity);
     } else {
       toast.error("Please log in to Add Products to the Cart");
       navigate("/login");
@@ -32,9 +34,7 @@ console.log(kids);
   if (!data || data.length === 0) {
     return <div>Loading...</div>;
   }
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
+  
   return (
     <div>
       <h1 className="text-2xl font-serif mt-4 ml-8">Kids Collection</h1>
@@ -42,10 +42,10 @@ console.log(kids);
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
         {kids.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
           >
-            <Link key={item.id} to={`productdetails/${item.id}`}>
+            <Link key={item._id} to={`productdetails/${item._id}`}>
               <img
                 src={item.image}
                 alt={item.name}
@@ -61,8 +61,8 @@ console.log(kids);
                   ₹{item.price}
                 </span>
                 <button
-                  onClick={() => handleAddToCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                  onClick={() => handleAddToCart(item._id,item.quantity>1?item.quantity:1)}
+                  className="bg-green-900 text-white px-4 py-2 rounded hover:bg-black transition"
                 >
                   Add to Cart
                 </button>

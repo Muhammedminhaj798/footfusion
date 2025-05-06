@@ -19,7 +19,7 @@ function EditProduct() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axiosInstance.get(`/admin/adminProduct/${id}`);
+        const response = await axiosInstance.get(`/admin/admingetProduct/${id}`);
         setInput(response.data); 
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -37,7 +37,7 @@ function EditProduct() {
   const handleData = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.patch(`/admin/adminProduct/${id}`, input);
+      await axiosInstance.put(`/admin/editProduct/${id}`, input);
       toast.success("Product updated successfully");
       fetch(); 
       navigate("/admin-product"); 

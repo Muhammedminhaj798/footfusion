@@ -227,11 +227,21 @@ const Cart = () => {
    await createOrder()
    navigate("/checkoutpayment")
   }
-  if (!cart || !cart.products || cart.products.length === 0)
-    return <h2 className="pt-36 text-center text-2xl font-bold">Your Cart is empty!</h2>;
-
+  if (!cart || !cart.products || cart.products.length === 0) {
+    return (
+      <div className="h-screen pt-36 text-center text-2xl font-bold">
+        <h1 className="flex justify-center items-center mb-6">Your Cart is empty!</h1>
+        <button
+          onClick={() => navigate("/collections")}
+          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    );
+  }
   return (
-    <div className="container mx-auto p-4 pt-36 min-h-screen h-full">
+    <div className=" mx-auto p-4 pt-36 min-h-screen h-full">
       <Link to={"/"}>
         <ArrowLeft className="hover:border border-black rounded-full" />
       </Link>

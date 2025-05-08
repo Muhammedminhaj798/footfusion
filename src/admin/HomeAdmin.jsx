@@ -19,41 +19,43 @@ function HomeAdmin() {
   };
 
   return (
-    <div className="fixed w-1/5 bg-slate-100 flex flex-col justify-between h-screen py-6 px-12">
-      <h1 className="text-center text-2xl">Foot Fusion</h1>
-      <div className="  flex flex-col  items-center gap-4 text-xl">
+    <div className="fixed w-1/5 bg-slate-100 flex flex-col h-screen py-6 px-12">
+      {/* Logout Button at Top */}
+      <button
+        onClick={clickToLogout}
+        className="mb-6 text-white font-semibold bg-green-900 hover:bg-black h-10 rounded-md hover:scale-110 transition-all duration-500"
+      >
+        Logout
+      </button>
+  
+      {/* Heading */}
+      <h1 className="text-center text-2xl mb-6">Foot Fusion</h1>
+  
+      {/* Navigation Links */}
+      <div className="flex flex-col items-center gap-4 text-xl">
         <Link to="/admin_dashboard">
           <button className="text-center text-slate-500 hover:text-black">
             Dashboard
           </button>
         </Link>
         <Link to="/admin-product">
-          <button className="text-center  text-slate-500 hover:text-black">
+          <button className="text-center text-slate-500 hover:text-black">
             Products
           </button>
         </Link>
         <hr />
-        <Link to={"/admin_users"}>
-          <h1 className="text-center  text-slate-500 hover:text-black">
-            Users
-          </h1>
+        <Link to="/admin_users">
+          <h1 className="text-center text-slate-500 hover:text-black">Users</h1>
         </Link>
         <hr />
-        <Link to={"/orders"}>
-          <h1 className="text-center   text-slate-500 hover:text-black">
-            orders
-          </h1>
+        <Link to="/orders">
+          <h1 className="text-center text-slate-500 hover:text-black">Orders</h1>
         </Link>
         <hr />
       </div>
-      <button
-        onClick={clickToLogout}
-        className="w-full text-white font-semibold bg-green-900 hover:bg-black h-10 rounded-md hover:scale-110 transition-all duration-500"
-      >
-        Logout
-      </button>
     </div>
   );
+  
 }
 
 export default HomeAdmin;

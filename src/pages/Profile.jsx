@@ -35,12 +35,12 @@ function Profile() {
                 <label className="font-bold text-2xl"> E-mail: </label>
                 <label className="font-bold">{loggedInUser?.email} </label>
               </h1>
-              <button
+              {/* <button
                 className="w-48 h-10 mx-[400px] mt-5 bg-red-500"
                 onClick={clickToLogout}
               >
                 Logout
-              </button>
+              </button> */}
             </div>
           ) : (
             <div className=" p-14 mt-24 rounded-lg w-[700px]">

@@ -93,6 +93,7 @@ function App() {
       <>
         {admin &&
           <>
+          
             <HomeAdmin />
             <Routes>
               <Route path="/admin_dashboard" element={<Dashboard />} />
@@ -101,7 +102,7 @@ function App() {
               <Route path="/admin_users" element={<Users />} />
               <Route path="/add_product" element={<AddProduct />} />
               <Route path="/edit_product/:id" element={<EditProduct />} />
-              <Route path="/orders" element={<Orders />} />
+              <Route path="/adminorders" element={<Orders />} />
               {/* <Route path="/user_details" element={<UserDetails />} /> */}
               <Route
                 path="/admin_home/productdetails/:id"

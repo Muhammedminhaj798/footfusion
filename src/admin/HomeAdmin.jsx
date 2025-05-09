@@ -1,16 +1,20 @@
-// import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-// import AdmProduct from "./AdmProduct";
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-
-// import Users from "./Users";
 
 function HomeAdmin() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Check which page is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   const clickToLogout = () => {
     localStorage.removeItem("loginUser");
     localStorage.removeItem("Admin");
-    toast.success("Admin page is logout successfully", {
+    toast.success("Logged out successfully", {
       onClose: () => {
         navigate("/");
         window.location.reload();
@@ -18,44 +22,67 @@ function HomeAdmin() {
     });
   };
 
+  const navItems = [
+    { path: "/admin_dashboard", label: "Dashboard", icon: "📊" },
+    { path: "/admin-product", label: "Products", icon: "👟" },
+    { path: "/admin_users", label: "Users", icon: "👥" },
+    { path: "/adminorders", label: "Orders", icon: "📦" },
+  ];
+
   return (
-    <div className="fixed w-1/5 bg-slate-100 flex flex-col h-screen py-6 px-12">
-      {/* Logout Button at Top */}
-      <button
-        onClick={clickToLogout}
-        className="mb-6 text-white font-semibold bg-green-900 hover:bg-black h-10 rounded-md hover:scale-110 transition-all duration-500"
-      >
-        Logout
-      </button>
-  
-      {/* Heading */}
-      <h1 className="text-center text-2xl mb-6">Foot Fusion</h1>
-  
+    <div className="fixed w-1/5 bg-gray-900 flex flex-col h-screen shadow-lg">
+      {/* Logo & Brand */}
+      <div className="p-6 border-b border-gray-700">
+        <h1 className="text-center text-2xl font-bold text-white mb-1">Foot Fusion</h1>
+        <p className="text-center text-gray-400 text-sm">Admin Portal</p>
+      </div>
+      
       {/* Navigation Links */}
-      <div className="flex flex-col items-center gap-4 text-xl">
-        <Link to="/admin_dashboard">
-          <button className="text-center text-slate-500 hover:text-black">
-            Dashboard
-          </button>
-        </Link>
-        <Link to="/admin-product">
-          <button className="text-center text-slate-500 hover:text-black">
-            Products
-          </button>
-        </Link>
-        <hr />
-        <Link to="/admin_users">
-          <h1 className="text-center text-slate-500 hover:text-black">Users</h1>
-        </Link>
-        <hr />
-        <Link to="/orders">
-          <h1 className="text-center text-slate-500 hover:text-black">Orders</h1>
-        </Link>
-        <hr />
+      <div className="flex-1 overflow-y-auto py-4 px-3">
+        <ul className="space-y-2">
+          {navItems.map((item) => (
+            <li key={item.path}>
+              <Link to={item.path}>
+                <button
+                  className={`flex items-center w-full p-3 rounded-lg transition-all duration-300 ${
+                    isActive(item.path)
+                      ? "bg-blue-600 text-white font-medium"
+                      : "text-gray-300 hover:bg-gray-700"
+                  }`}
+                >
+                  <span className="mr-3">{item.icon}</span>
+                  <span>{item.label}</span>
+                  {isActive(item.path) && (
+                    <span className="ml-auto bg-blue-500 h-2 w-2 rounded-full"></span>
+                  )}
+                </button>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* User Section & Logout */}
+      <div className="p-4 border-t border-gray-700">
+        <div className="flex items-center p-2 mb-3 rounded-lg bg-gray-800">
+          <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+            A
+          </div>
+          <div className="ml-3">
+            <p className="text-sm font-medium text-white">Admin User</p>
+            <p className="text-xs text-gray-400">Administrator</p>
+          </div>
+        </div>
+        <button
+          onClick={clickToLogout}
+          className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center"
+        >
+          <span className="mr-2">⎋</span>
+          Logout
+        </button>
       </div>
     </div>
   );
-  
 }
 
 export default HomeAdmin;

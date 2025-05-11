@@ -56,7 +56,7 @@ function Navbar() {
             {input && (
               <ul className="absolute left-0 w-full bg-white shadow-lg rounded-md max-h-48 overflow-auto z-50">
                 {filtered.map((item, index) => (
-                  <Link to={`productdetails/${item._id}`}>
+                  <Link to={`productdetails/${item._id}`} onClick={()=>setInput('')}>
                   <li
                     key={index}
                     className="p-2 border-b cursor-pointer hover:bg-gray-100"

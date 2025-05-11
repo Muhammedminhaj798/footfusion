@@ -26,7 +26,7 @@ function Dashboard() {
     
 
   return (
-    <div className='ml-64 fixed flex bg-green-100 h-screen w-screen'>
+    <div className='ml-[310px] fixed flex bg-green-100 h-screen w-[1280px]'>
       <div className='ml-96 flex mt-10'>
         <Link to={'/admin_users'}>
         <div className='w-44 -ml-48 h-24 bg-green-200 rounded-lg mt-48  hover:scale-105  transition-all duration-500'>

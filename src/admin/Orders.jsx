@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axiosInstance from "../AxiosInstence";
+import React, { useEffect, useState } from 'react';
+import axiosInstance from '../AxiosInstence';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -11,24 +11,64 @@ function Orders() {
       try {
         setLoading(true);
         const response = await axiosInstance.get('/admin/getOrderDetails');
-        setOrders(response.data.data);
+        console.log('API Response:', response.data.data); // Debug: Log full response
+        const ordersData = Array.isArray(response.data.data) ? response.data.data : [];
+        // Log missing fields for debugging
+        ordersData.forEach((order, index) => {
+          if (!order.products?.every((p) => p.productId?.price)) {
+            console.warn(`Order ${index + 1} missing productId.price in products`, order);
+          }
+          if (!order.userId?.name) {
+            console.warn(`Order ${index + 1} missing userId.name`, order);
+          }
+          if (!order.totalAmount) {
+            console.warn(`Order ${index + 1} missing totalAmount`, order);
+          }
+        });
+        setOrders(ordersData);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching orders:", error);
-        setError("Failed to load orders. Please try again later.");
+        console.error('Error fetching orders:', error);
+        setError('Failed to load orders. Please try again later.');
         setLoading(false);
       }
     };
-    
+
     fetchOrders();
   }, []);
 
+  // Handle status change (shippingStatus or totalStatus)
+  const handleStatusChange = async (orderId, field, newStatus) => {
+    try {
+      const payload = {};
+      if (field === 'shippingStatus') payload.shippingStatus = newStatus;
+      if (field === 'totalStatus') payload.totalStatus = newStatus;
+
+      const response = await axiosInstance.put(`/admin/orderStatus/${orderId}`, payload);
+      // Update local state
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === orderId ? { ...order, [field]: newStatus } : order
+        )
+      );
+      // Optional: Show success message
+      alert(`${field === 'shippingStatus' ? 'Shipping' : 'Payment'} status updated successfully!`);
+    } catch (error) {
+      console.error(`Error updating ${field}:`, error);
+      alert(
+        `Failed to update ${field === 'shippingStatus' ? 'shipping' : 'payment'} status: ${
+          error.response?.data?.message || 'Please try again.'
+        }`
+      );
+    }
+  };
+
   // Calculate total orders
   const totalOrders = orders.length;
-  
+
   // Calculate total products across all orders
   const totalProducts = orders.reduce((total, order) => {
-    return total + order.products.length;
+    return total + (order.products?.length || 0);
   }, 0);
 
   if (loading) {
@@ -40,7 +80,7 @@ function Orders() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-[1230px] ml-[300px]">
       {/* Summary Statistics */}
       <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-blue-50 p-4 rounded-lg shadow">
@@ -53,127 +93,145 @@ function Orders() {
         </div>
       </div>
 
-      {/* Orders Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white rounded-lg overflow-hidden shadow">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">No.</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Order ID</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Customer</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Shipping Address</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Date</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Items</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Total Amount</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {orders.map((order, index) => {
-              // Calculate total amount for this order
-              const orderTotal = order.products.reduce((sum, product) => {
-                return sum + (product.totalAmount || 0);
-              }, 0);
-              
-              // Format date if available
-              const orderDate = order.createdAt 
-                ? new Date(order.createdAt).toLocaleDateString() 
-                : "N/A";
-              
-              return (
-                <tr key={order._id || index} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 text-sm text-gray-500">{index + 1}</td>
-                  <td className="px-4 py-3 text-sm font-medium">
-                    {order._id ? order._id.slice(-6).toUpperCase() : `ORD-${index + 1000}`}
-                  </td>
-                  <td className="px-4 py-3 text-sm">{order.name || "N/A"}</td>
-                  <td className="px-4 py-3 text-sm">{order.address || "N/A"}</td>
-                  <td className="px-4 py-3 text-sm">{orderDate}</td>
-                  <td className="px-4 py-3 text-sm">{order.products.length}</td>
-                  <td className="px-4 py-3 text-sm font-medium">
-                    ${orderTotal.toFixed(2)}
-                  </td>
-                </tr>
-              );
-            })}
-            
-            {orders.length === 0 && (
-              <tr>
-                <td colSpan="7" className="px-4 py-8 text-center text-gray-500">
-                  No orders found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+      {/* Orders List (Cards) */}
+      <h2 className="text-xl font-bold mb-4">Orders</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {orders.map((order, index) => {
+          const orderTotal = order.totalAmount || 0;
+          const orderDate = order.purchaseDate
+            ? new Date(order.purchaseDate).toLocaleDateString()
+            : 'N/A';
+
+          return (
+            <div
+              key={order._id || index}
+              className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+            >
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-semibold">
+                  Order #{order._id ? order._id.slice(-6).toUpperCase() : `ORD-${index + 1000}`}
+                </h3>
+                <div className="flex space-x-2">
+                  <select
+                    value={order.totalStatus || 'Pending'}
+                    onChange={(e) => handleStatusChange(order._id, 'totalStatus', e.target.value)}
+                    className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Failed">Failed</option>
+                  </select>
+                  <select
+                    value={order.shippingStatus || 'Pending'}
+                    onChange={(e) => handleStatusChange(order._id, 'shippingStatus', e.target.value)}
+                    className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600">
+                Customer: <span className="font-medium">{order.userId?.name || 'N/A'}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Date: <span className="font-medium">{orderDate}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Items: <span className="font-medium">{order.products?.length || 0}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Total: <span className="font-bold">${orderTotal.toFixed(2)}</span>
+              </p>
+            </div>
+          );
+        })}
+        {orders.length === 0 && (
+          <div className="col-span-full text-center text-gray-500 p-8">
+            No orders found
+          </div>
+        )}
       </div>
 
-      {/* Order Details Section */}
+      {/* Order Details Section (Cards) */}
       <h2 className="text-xl font-bold mt-8 mb-4">Order Details</h2>
-      
       {orders.map((order, orderIndex) => (
         <div key={order._id || orderIndex} className="mb-6 bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">
               Order #{order._id ? order._id.slice(-6).toUpperCase() : `ORD-${orderIndex + 1000}`}
             </h3>
-            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-              {order.status || "Processing"}
-            </span>
+            <div className="flex space-x-2">
+              <select
+                value={order.totalStatus || 'Pending'}
+                onChange={(e) => handleStatusChange(order._id, 'totalStatus', e.target.value)}
+                className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+              >
+                <option value="Pending">Pending</option>
+                <option value="Paid">Paid</option>
+                <option value="Failed">Failed</option>
+              </select>
+              <select
+                value={order.shippingStatus || 'Pending'}
+                onChange={(e) => handleStatusChange(order._id, 'shippingStatus', e.target.value)}
+                className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+              >
+                <option value="Pending">Pending</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <p className="text-sm text-gray-600">Customer:</p>
-              <p className="font-medium">{order.name || "N/A"}</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-600">Shipping Address:</p>
-              <p className="font-medium">{order.address || "N/A"}</p>
+              <p className="font-medium">{order.userId?.name || 'N/A'}</p>
             </div>
           </div>
-          
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500">No.</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500">Product</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500">Quantity</th>
-                  <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Price</th>
-                  <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Total</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {order.products.map((product, productIndex) => (
-                  <tr key={product._id || productIndex} className="hover:bg-gray-50">
-                    <td className="px-4 py-2 text-sm">{productIndex + 1}</td>
-                    <td className="px-4 py-2 text-sm font-medium">
-                      {product.productId?.name || "Product Name"}
-                    </td>
-                    <td className="px-4 py-2 text-sm">{product.quantity || 0}</td>
-                    <td className="px-4 py-2 text-sm text-right">
-                      ${(product?.price || 0).toFixed(2)}
-                    </td>
-                    <td className="px-4 py-2 text-sm font-medium text-right">
-                      ${(product.totalAmount || 0).toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot className="bg-gray-50">
-                <tr>
-                  <td colSpan="4" className="px-4 py-2 text-right font-medium">Order Total:</td>
-                  <td className="px-4 py-2 text-right font-bold">
-                    ${order.products.reduce((sum, product) => sum + (product.totalAmount || 0), 0).toFixed(2)}
-                  </td>
-                </tr> 
-              </tfoot>
-            </table>
+
+          <div className="space-y-4">
+            {order.products?.map((product, productIndex) => {
+              const productPrice = product.productId?.price || 0;
+              const productTotal = productPrice * (product.quantity || 0);
+
+              return (
+                <div
+                  key={product._id || productIndex}
+                  className="bg-gray-50 p-3 rounded-lg flex justify-between items-center"
+                >
+                  <div>
+                    <p className="text-sm font-medium">
+                      {product.productId?.name || 'Unknown Product'}
+                    </p>
+                    <p className="text-sm text-gray-600">Quantity: {product.quantity || 0}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-gray-600">Price: ${productPrice.toFixed(2)}</p>
+                    <p className="text-sm font-medium">Total: ${productTotal.toFixed(2)}</p>
+                  </div>
+                </div>
+              );
+            }) || (
+              <div className="text-sm text-center text-gray-500 p-4">
+                No products found
+              </div>
+            )}
+          </div>
+
+          <div className="mt-4 text-right">
+            <p className="text-sm font-medium">
+              Order Total:{' '}
+              <span className="font-bold">${(order.totalAmount || 0).toFixed(2)}</span>
+            </p>
           </div>
         </div>
       ))}
     </div>
   );
-} 
+}
 
 export default Orders;

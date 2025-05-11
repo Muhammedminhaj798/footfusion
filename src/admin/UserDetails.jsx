@@ -3,6 +3,7 @@ import { UsersContext } from "../context/UserContext";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ArrowLeft } from "lucide-react";
+import axiosInstance from "../AxiosInstence";
 
 function UserDetails() {
   const { datas } = useContext(UsersContext);
@@ -15,15 +16,13 @@ function UserDetails() {
     console.log("filtered", filter);
   }, [datas, id]);
 
-  // useEffect(() => {
-  //   const filter = datas.find((filt) => filt.id === id);
-  // }, [datas, id]);
+
 
   const blockUser = async (e) => {
     e.preventDefault();
     if (stated?.block === false) {
       try {
-        const response = await axios.patch(`http://localhost:3000/user/${id}`, {
+        const response = await axiosInstance.patch(`admin/getuser/${id}`, {
           block: true,
         });
         setState(response.data);
@@ -32,7 +31,7 @@ function UserDetails() {
       }
     } else if (stated?.block === true) {
       try {
-        const response = await axios.patch(`http://localhost:3000/user/${id}`, {
+        const response = await axiosInstance.patch(`admin/getuser/${id}`, {
           block: false,
         });
         setState(response.data);

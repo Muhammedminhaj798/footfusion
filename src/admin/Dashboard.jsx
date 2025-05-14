@@ -30,13 +30,15 @@ function Dashboard() {
     revenueGrowth: 23.4
   });
 
+  // console.log("recentOrders", recentOrders)
+  // console.log("setORders: ", orders);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const response = await axiosInstance.get('/admin/getOrderDetails');
         const allOrders = response.data.data;
-        
         // Set all orders
         setOrders(allOrders);
         
@@ -160,7 +162,7 @@ function Dashboard() {
           </Link>
           
           {/* Orders Card */}
-          <Link to="/orders" className="block">
+          <Link to="/adminorders" className="block">
             <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 border-l-4 border-amber-500">
               <div className="flex items-center justify-between">
                 <div>
@@ -222,7 +224,7 @@ function Dashboard() {
           <div className="lg:col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-800">Recent Orders</h2>
-              <Link to="/orders" className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
+              <Link to="/adminorders" className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
                 View All
               </Link>
             </div>
@@ -261,7 +263,7 @@ function Dashboard() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm font-medium text-gray-900">
-                            {order.user?.name || "Anonymous"}
+                            {order.userId?.name || "Anonymous"}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

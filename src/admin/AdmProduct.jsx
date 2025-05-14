@@ -31,7 +31,7 @@ function AdmProduct() {
   };
 
   return (
-    <div className="w-full max-w-6xl ml-[300px] mx-auto pt-8 px-4">
+    <div className="w-full max-w-6xl ml-[335px] mx-auto pt-8 px-4">
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-6 text-gray-800">Product Management</h1>
         

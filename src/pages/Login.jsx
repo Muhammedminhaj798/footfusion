@@ -21,14 +21,14 @@ function Login() {
   //       item.password == input.password &&
   //       item.block == false
   //   );
-    
+
   //   if (!user) {
   //     toast.error("Invalid email or password, or account is blocked.");
   //     navigate("/register");
   //     return;
   //   }
 
-   
+
   //   if (user.role === "admin") {
   //     toast.success("Welcome admin", {
   //       onClose: () => {
@@ -60,9 +60,9 @@ function Login() {
           withCredentials: true, // because backend is setting cookies
         }
       );
-  
+
       const user = response.data.data; // backend returns user data here
-  
+
       if (response.data.isAdmin) {
         toast.success("Welcome admin", {
           onClose: () => {
@@ -81,14 +81,14 @@ function Login() {
         });
       }
 
-      setInput({email: "", password:""})
+      setInput({ email: "", password: "" })
     } catch (error) {
       console.log(error);
       toast.error(error.response?.data?.message || "Login failed");
     }
   };
-  
-  
+
+
 
   const handleChange = (e) => {
     const name = e.target.name;

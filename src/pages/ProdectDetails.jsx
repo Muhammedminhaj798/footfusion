@@ -11,11 +11,11 @@ function ProductDetails() {
   const { addToCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-  
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -40,7 +40,7 @@ function ProductDetails() {
       toast.error("Please log in to add products to the cart");
       return;
     }
-    
+
     if (product) {
       const productToAdd = {
         _id: product._id,
@@ -80,7 +80,7 @@ function ProductDetails() {
     return (
       <div className="text-center p-10">
         <h2 className="text-2xl text-red-500">Product not found</h2>
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="mt-4 bg-green-500 text-white px-4 py-2 rounded"
         >
@@ -97,9 +97,9 @@ function ProductDetails() {
           {/* Product Image */}
           <div className="md:w-1/2 p-4">
             <div className="relative">
-              <img 
-                src={product.image || '/placeholder-image.jpg'} 
-                alt={product.name} 
+              <img
+                src={product.image || '/placeholder-image.jpg'}
+                alt={product.name}
                 className="w-full h-auto rounded-lg object-cover"
               />
               <div className="border-4 border-green-300 absolute top-0 left-0 right-0 bottom-0 rounded-lg"></div>
@@ -109,7 +109,7 @@ function ProductDetails() {
           {/* Product Info */}
           <div className="md:w-1/2 p-8">
             <h1 className="text-2xl font-bold text-gray-800 mb-2">{product.name}</h1>
-            
+
             {/* Rating */}
             <div className="flex items-center mb-4">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -128,17 +128,17 @@ function ProductDetails() {
             {/* Main Details */}
             <div className="space-y-3 mb-6">
               <p className="text-xl font-bold text-green-600">₹{product.price.toFixed(2)}</p>
-              
+
               <div className="flex items-center">
                 <span className="text-gray-600 mr-2">Brand:</span>
                 <span className="font-medium">{product.brand || 'N/A'}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <span className="text-gray-600 mr-2">Category:</span>
                 <span className="font-medium">{product.type || 'N/A'}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <span className="text-gray-600 mr-2">Status:</span>
                 <span className={`font-medium ${product.qty > 0 ? "text-green-600" : "text-red-600"}`}>
@@ -157,7 +157,7 @@ function ProductDetails() {
             <div className="mb-6">
               <label className="block mb-2">Quantity</label>
               <div className="flex items-center">
-                <button 
+                <button
                   onClick={decrementQuantity}
                   className="bg-gray-200 px-3 py-1 rounded-l disabled:opacity-50"
                   disabled={quantity <= 1}
@@ -167,7 +167,7 @@ function ProductDetails() {
                 <div className="px-4 py-1 bg-gray-100 text-center w-12">
                   {quantity}
                 </div>
-                <button 
+                <button
                   onClick={incrementQuantity}
                   className="bg-gray-200 px-3 py-1 rounded-r disabled:opacity-50"
                   disabled={quantity >= product.qty}
@@ -182,8 +182,8 @@ function ProductDetails() {
               onClick={handleAddToCart}
               disabled={product.qty <= 0}
               className={`w-full py-3 rounded text-white font-medium 
-                ${product.qty > 0 
-                  ? "bg-green-600 hover:bg-green-700" 
+                ${product.qty > 0
+                  ? "bg-green-600 hover:bg-green-700"
                   : "bg-gray-400 cursor-not-allowed"}`}
             >
               Add to Cart

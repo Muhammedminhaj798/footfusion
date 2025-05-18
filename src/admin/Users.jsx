@@ -9,12 +9,12 @@ function Users() {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
-  
+
   // Filter out admin users based on the isAdmin property
   const users = datas.filter((item) => !item.isAdmin);
 
   // Search functionality
-  const filteredUsers = users.filter(user => 
+  const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -53,11 +53,10 @@ function Users() {
 
   // Status badge component
   const StatusBadge = ({ isBlocked }) => (
-    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-      isBlocked 
-        ? "bg-red-100 text-red-800" 
+    <span className={`px-2 py-1 text-xs font-medium rounded-full ${isBlocked
+        ? "bg-red-100 text-red-800"
         : "bg-green-100 text-green-800"
-    }`}>
+      }`}>
       {isBlocked ? "Blocked" : "Active"}
     </span>
   );
@@ -251,41 +250,38 @@ function Users() {
                     <button
                       onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                       disabled={currentPage === 1}
-                      className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${
-                        currentPage === 1
+                      className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${currentPage === 1
                           ? "text-gray-300 cursor-not-allowed"
                           : "text-gray-500 hover:bg-gray-50"
-                      }`}
+                        }`}
                     >
                       <span className="sr-only">Previous</span>
                       <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </button>
-                    
+
                     {/* Page numbers */}
                     {[...Array(totalPages)].map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentPage(index + 1)}
-                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                          currentPage === index + 1
+                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${currentPage === index + 1
                             ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
                             : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-                        }`}
+                          }`}
                       >
                         {index + 1}
                       </button>
                     ))}
-                    
+
                     <button
                       onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                       disabled={currentPage === totalPages}
-                      className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${
-                        currentPage === totalPages
+                      className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${currentPage === totalPages
                           ? "text-gray-300 cursor-not-allowed"
                           : "text-gray-500 hover:bg-gray-50"
-                      }`}
+                        }`}
                     >
                       <span className="sr-only">Next</span>
                       <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

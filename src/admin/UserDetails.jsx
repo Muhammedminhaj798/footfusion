@@ -41,30 +41,6 @@ function UserDetails() {
     }
   };
 
-  // const blockUser = async () => {
-  //   try {
-  //     if (stated?.block == false) {
-  //       const response = await axios.patch(`http://localhost:3000/user/${id}`, {
-  //         block: true,
-  //       });
-
-  //       console.log(response.data);
-
-  //     } else {
-  //       const response = await axios.patch(`http://localhost:3000/user/${id}`, {
-  //         block: false,
-  //       });
-  //       console.log(response.data);
-
-  //     }
-
-  //   } catch (error) {
-  //     console.error(error);
-
-  //   }
-
-  // };
-
   console.log(stated);
 
   return (

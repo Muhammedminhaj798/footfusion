@@ -12,7 +12,7 @@ function CartProvider({ children }) {
   const [client, setClient] = useState('')
   const loggedInUser = JSON.parse(localStorage.getItem("loginUser"));
   useEffect(() => {
-    
+
     if (loggedInUser && loggedInUser.cart) {
       setCart(loggedInUser.cart);
     }
@@ -49,14 +49,14 @@ function CartProvider({ children }) {
   //   }
   // };
   const stripePromise = loadStripe('pk_test_51RCvmlAJxLMwv76I61uG8YhHz8liK7CVGko8sBoDS2P69fvOF9xd7TQ2FEZmzi8Ch3WMkqHAhA22sAuy2FkBGCss00gWJuxkXA');
-  const addToCart=async(productId,quantity)=>{
+  const addToCart = async (productId, quantity) => {
     try {
-      const response=await axiosInstance.post('/user/updateUserCart',{productId,quantity})
+      const response = await axiosInstance.post('/user/updateUserCart', { productId, quantity })
       setAddCart(response.data)
 
     } catch (error) {
       console.log(error);
-      
+
     }
   }
 
@@ -81,24 +81,24 @@ function CartProvider({ children }) {
     }
   };
 
-  const getCart = async() =>{
+  const getCart = async () => {
     try {
       const response = await axiosInstance.get("/user/getUserCart")
-      console.log('cart:',response.data.data);
-      
+      console.log('cart:', response.data.data);
+
       setCart(response.data.data)
     } catch (error) {
       console.log(error);
-      
+
     }
   }
 
 
-  const createOrder = async()=>{
+  const createOrder = async () => {
     try {
-      const response = await axiosInstance.post('/user/createOrder',{userId:loggedInUser._id})
+      const response = await axiosInstance.post('/user/createOrder', { userId: loggedInUser._id })
       setClient(response.data.data.clientSecret);
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +107,7 @@ function CartProvider({ children }) {
   return (
     <div>
       <CartContext.Provider
-        value={{ cart, addToCart, removeFromCart, setCart,getCart, createOrder,client ,stripePromise}}
+        value={{ cart, addToCart, removeFromCart, setCart, getCart, createOrder, client, stripePromise }}
       >
         {children}
       </CartContext.Provider>

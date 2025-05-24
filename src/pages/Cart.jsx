@@ -153,7 +153,7 @@ import { ArrowLeft } from "lucide-react";
 import axiosInstance from "../AxiosInstence";
 
 const Cart = () => {
-  const { cart, setCart, removeFromCart, getCart,createOrder } = useContext(CartContext);
+  const { cart, setCart, removeFromCart, getCart, createOrder } = useContext(CartContext);
   const [user, setUser] = useState(null);
   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
@@ -224,8 +224,8 @@ const Cart = () => {
   };
 
   const handlePayment = async () => {
-   await createOrder()
-   navigate("/checkoutpayment")
+    await createOrder()
+    navigate("/checkoutpayment")
   }
   if (!cart || !cart.products || cart.products.length === 0) {
     return (

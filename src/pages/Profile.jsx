@@ -7,13 +7,13 @@ function Profile() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({ name: "", email: "" });
   // Simulate useNavigate functionality
- 
+
   useEffect(() => {
     // Check for logged in user
-    const loggedInUser = localStorage.getItem("loginUser") 
-      ? JSON.parse(localStorage.getItem("loginUser")) 
+    const loggedInUser = localStorage.getItem("loginUser")
+      ? JSON.parse(localStorage.getItem("loginUser"))
       : null;
-    
+
     if (loggedInUser) {
       setIsLoggedIn(true);
       setUserData({
@@ -22,7 +22,7 @@ function Profile() {
       });
     }
   }, []);
-  
+
   const handleLogout = () => {
     localStorage.removeItem("loginUser");
     setIsLoggedIn(false);
@@ -43,7 +43,7 @@ function Profile() {
                 <p className="text-blue-100">User Profile</p>
               </div>
             </div>
-            
+
             <div className="p-6">
               <div className="space-y-6">
                 <div className="border-b pb-4">
@@ -53,7 +53,7 @@ function Profile() {
                   </div>
                   <p className="text-lg font-medium pl-6">{userData.name}</p>
                 </div>
-                
+
                 <div className="border-b pb-4">
                   <div className="flex items-center mb-2">
                     <Mail className="text-gray-500 mr-2" size={18} />
@@ -61,8 +61,8 @@ function Profile() {
                   </div>
                   <p className="text-lg break-all pl-6">{userData.email}</p>
                 </div>
-                
-                <button 
+
+                <button
                   onClick={handleLogout}
                   className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-medium flex items-center justify-center"
                 >
@@ -79,12 +79,12 @@ function Profile() {
             </div>
             <h2 className="text-xl font-medium text-gray-700 mb-4">Please login to the website...</h2>
             <Link to={'/login'}>
-            <button 
-              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium"
-            >
-              Login
-              <ChevronRight size={16} className="ml-1" />
-            </button>
+              <button
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium"
+              >
+                Login
+                <ChevronRight size={16} className="ml-1" />
+              </button>
             </Link>
           </div>
         )}

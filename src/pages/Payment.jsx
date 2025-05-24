@@ -4,32 +4,32 @@ import { CartContext } from "../context/CartProvider";
 
 function Payment() {
   const [data, setData] = useState([])
-  const {cart, setCart} = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext)
   const navigate = useNavigate()
- console.log(data)
+  console.log(data)
 
 
 
-const handleCheckout = async () => {
-  const loggedInUser = localStorage.getItem("loginUser");
+  const handleCheckout = async () => {
+    const loggedInUser = localStorage.getItem("loginUser");
 
-  if (!loggedInUser) {
-    console.error("No logged-in user found!");
-    return;
-  }
+    if (!loggedInUser) {
+      console.error("No logged-in user found!");
+      return;
+    }
 
-  try {
-    const parsedUser = JSON.parse(loggedInUser); 
-    const updatedCart = []; 
+    try {
+      const parsedUser = JSON.parse(loggedInUser);
+      const updatedCart = [];
 
-    const updatedUser = { ...parsedUser, cart: updatedCart };
-    localStorage.setItem("loginUser", JSON.stringify(updatedUser)); 
+      const updatedUser = { ...parsedUser, cart: updatedCart };
+      localStorage.setItem("loginUser", JSON.stringify(updatedUser));
 
-    navigate('/'); 
-  } catch (error) {
-    console.error("Error during checkout:", error);
-  }
-};
+      navigate('/');
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
+  };
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
@@ -178,7 +178,7 @@ const handleCheckout = async () => {
                 </label>
                 <input
                   type="text"
-                  required 
+                  required
                   id="cvv"
                   className="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
                 />
@@ -187,7 +187,7 @@ const handleCheckout = async () => {
           </div>
 
           <div className="mt-8 flex justify-end">
-            <button onClick={()=> handleCheckout()} type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-700 dark:bg-teal-600 dark:text-white dark:hover:bg-teal-900">
+            <button onClick={() => handleCheckout()} type="submit" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-700 dark:bg-teal-600 dark:text-white dark:hover:bg-teal-900">
               Place Order
             </button>
           </div>

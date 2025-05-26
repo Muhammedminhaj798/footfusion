@@ -10,7 +10,7 @@ function Register() {
     password: "",
     cpassword: "",
     cartItems: [],
-    block : false,
+    block: false,
   });
 
   const [focus, setFocus] = useState({
@@ -39,55 +39,36 @@ function Register() {
       }, {
         withCredentials: true // important for sending cookies
       });
-      
 
-      // alert("user registered successfully");
       toast.success('user registered successfully')
       navigate("/login");
     } catch (error) {
-      
-      // alert("An error occurred while registering. Please try again.");
+
       toast.error("An error occurred while registering. Please try again.")
     }
   };
 
-  // const handleData = async (e) => {
-  //   e.preventDefault();
-  //   if (input.password !== input.cpassword) {
-  //     toast.warning('Passwords do not match');
-  //     return;
-  //   }
-  //   try {
-  //     await axios.post("http://localhost:8080/api/auth/register", {
-  //       username: input.username,
-  //       email: input.email,
-  //       password: input.password,
-  //       cpassword: input.cpassword,
-  //       role: "user",
-  //       block: false
-  //     }, {
-  //       withCredentials: true
-  //     });
   
+
   //     toast.success('User registered successfully');
   //     navigate("/login");
   //   } catch (error) {
   //     toast.error(error.response?.data?.message || "An error occurred while registering. Please try again.");
   //   }
   // };
-  
+
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInput({ ...input, [name]: value });
   };
-  
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white p-6 md:p-10 lg:p-14 rounded-lg shadow-lg w-full max-w-md md:max-w-lg flex flex-col gap-6">
-      <h1 className="text-center text-xl font-bold capitalize">register</h1>
+        <h1 className="text-center text-xl font-bold capitalize">register</h1>
         <form onSubmit={handleData} className="flex flex-col gap-4">
           <div>
             <input
@@ -101,7 +82,7 @@ function Register() {
               onBlur={() => setFocus({ ...focus, errName: true })}
               onChange={handleChange}
               value={input.username}
-                
+
             />
             <span id="span" className="text-xs text-gray-200 block mt-1">
               Username should have 3-16 characters

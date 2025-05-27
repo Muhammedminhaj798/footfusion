@@ -48,14 +48,9 @@ function Register() {
     }
   };
 
-  
 
-  //     toast.success('User registered successfully');
-  //     navigate("/login");
-  //   } catch (error) {
-  //     toast.error(error.response?.data?.message || "An error occurred while registering. Please try again.");
-  //   }
-  // };
+
+
 
 
   const handleChange = (e) => {

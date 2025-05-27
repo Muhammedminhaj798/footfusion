@@ -58,7 +58,7 @@ function App() {
           <Route path="/search_bar" element={<SearchBar />} />
           <Route path="/CheckoutSuccess/:sessionId" element={<CheckoutSucces />} />
           <Route path="/checkoutpayment" element={<Checkoutpayment />} />
-          <Route path="/orders" element={<OrderDetails/>}/>
+          <Route path="/orders" element={<OrderDetails />} />
 
           <Route
             path="/man/productdetails/:id"
@@ -84,16 +84,16 @@ function App() {
             element={<ProdectDetails />}
           />
 
-          
+
         </Routes>
         {/* <Footer/> */}
       </>
-      
+
 
       <>
         {admin &&
           <>
-          
+
             <HomeAdmin />
             <Routes>
               <Route path="/admin_dashboard" element={<Dashboard />} />

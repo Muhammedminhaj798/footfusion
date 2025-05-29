@@ -18,36 +18,7 @@ function CartProvider({ children }) {
     }
   }, []);
 
-  // const addToCart = async (product) => {
-  //   const loggedInUser = JSON.parse(localStorage.getItem("loginUser"));
-  //   if (!loggedInUser) {
-  //     console.error("User not logged in.");
-  //     toast.success('user not logged in.')
-  //     return;
-  //   }
-  //   const existingProduct = cart.find((item) => item.id === product.id);
-  //   let updatedCart;
 
-  //   if (existingProduct) {
-  //     updatedCart = cart.map((item)=>
-  //      item.id === product.id ? {...item, qty: item.qty +1} : item
-  //   );
-  //   }else{
-  //       updatedCart = [...cart, {...product, qty : 1}]
-  //   }
-  //   setCart(updatedCart);
-
-  //   try {
-  //     const updatedUser = { ...loggedInUser, cart: updatedCart };
-  //     await axiosInstance.post(
-  //       `/user/updateUserCart`,
-  //       updatedUser
-  //     );
-  //     localStorage.setItem("loginUser", JSON.stringify(updatedUser));
-  //   } catch (error) {
-  //     console.error("Error the updating cart:", error);
-  //   }
-  // };
   const stripePromise = loadStripe('pk_test_51RCvmlAJxLMwv76I61uG8YhHz8liK7CVGko8sBoDS2P69fvOF9xd7TQ2FEZmzi8Ch3WMkqHAhA22sAuy2FkBGCss00gWJuxkXA');
   const addToCart = async (productId, quantity) => {
     try {

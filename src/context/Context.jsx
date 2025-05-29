@@ -7,14 +7,14 @@ export const ProductContext = createContext();
 function Context({ children }) {
   const [data, setData] = useState([]);
 
-const fetch = async () => {
-  try {
-    const response = await axiosInstance.get("/user/getAllProducts")
-    setData(response.data.data); 
-  } catch (error) {
-    console.error("Error is : ", error);
-  }
-};
+  const fetch = async () => {
+    try {
+      const response = await axiosInstance.get("/user/getAllProducts")
+      setData(response.data.data);
+    } catch (error) {
+      console.error("Error is : ", error);
+    }
+  };
 
 
 
